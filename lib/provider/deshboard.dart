@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dhanshirisapp/model/Category.dart';
 import 'package:dhanshirisapp/model/audio_book.dart';
 import 'package:dhanshirisapp/model/bookInfo.dart';
+import 'package:dhanshirisapp/model/magazineinfo.dart';
 import 'package:dhanshirisapp/model/slider_model.dart';
 import 'package:dhanshirisapp/model/sliderimage.dart';
 import 'package:dhanshirisapp/utill/app_constants.dart';
@@ -17,6 +18,7 @@ class CategoryProvider with ChangeNotifier {
   // ---list variable---
   List<String> _categoryNames = [];
   List<BookInfo> _recentBooks = [];
+  List<MagazineInfo> _magazine = [];
   List<BookInfo> _popularBooks = [];
   List<AudioBookModel> _audiobookmodel = [];
 
@@ -24,6 +26,7 @@ class CategoryProvider with ChangeNotifier {
   List<Category> get categoryList => _categoryList;
   List<String>? get categoryName => _categoryNames;
   List<BookInfo>? get recentBooks => _recentBooks;
+  List<MagazineInfo>? get magazine => _magazine;
   List<BookInfo>? get popularBooks => _popularBooks;
   List<AudioBookModel>? get audioBookModel => _audiobookmodel;
   List<SliderModel> get slider_images => _base64BookImages;
@@ -203,6 +206,44 @@ class CategoryProvider with ChangeNotifier {
     } catch (error) {
       message = 'failed';
       isLoadingBookPreview = false;
+      notifyListeners();
+    }
+    return {'message': message};
+  }
+
+  Future<dynamic> fetchmagazine(token) async {
+    String message = '';
+    isLoadingBookInfo = true;
+    notifyListeners();
+    print('----------token----------');
+    print(token);
+    try {
+      var url = Uri.parse('https://boichitro.com.bd/api/v1/archive/magazines/');
+      http.Response response = await http.get(url, headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Token $token',
+      });
+      List<MagazineInfo> _magazineTemplist = [];
+      Map<String, dynamic> responseData =
+          jsonDecode((utf8.decode(response.bodyBytes)));
+
+      print(responseData);
+      responseData['results'].forEach((dynamic data) {
+        final MagazineInfo _magazine = MagazineInfo.fromJson(data);
+        print(
+            '----------------------------------asegasgasgsa-gas-gas-gas-gsa-gs-ags-gs-gs-gs-g-sg-sg-sg-sg-sag-s');
+
+        print(_magazine.description);
+        _magazineTemplist.add(_magazine);
+      });
+      _magazine = _magazineTemplist;
+      isLoadingAudioBookInfo = false;
+      notifyListeners();
+    } catch (error) {
+      //turn off loader
+      message = 'failed';
+      isLoadingAudioBookInfo = false;
       notifyListeners();
     }
     return {'message': message};

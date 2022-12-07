@@ -10,6 +10,7 @@ abstract class LocaleKeys {
   static const categories = "categories";
   static const audiobook = "audiobook";
   static const popular = "popular";
+  static const magazine = "magazine";
   static const search = "search";
   static const myprofile = "myprofile";
   static const subscribe = "subscribe";
