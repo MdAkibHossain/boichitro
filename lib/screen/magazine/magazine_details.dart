@@ -7,6 +7,7 @@ import 'package:dhanshirisapp/res/colors.dart';
 import 'package:dhanshirisapp/screen/book_api_call.dart';
 import 'package:dhanshirisapp/screen/book_screen/landscope/modal_tab_bar.dart';
 import 'package:dhanshirisapp/screen/book_screen/modal_tab_bar.dart';
+import 'package:dhanshirisapp/screen/magazine/magazineabout.dart';
 import 'package:dhanshirisapp/screen/magazine/magazineread.dart';
 import 'package:dhanshirisapp/screen/user/user_profile_edit.dart';
 import 'package:dhanshirisapp/translations/locale_keys.g.dart';
@@ -318,30 +319,31 @@ class _MagazineDetailsState extends State<MagazineDetails> {
                                             fontSize: 1.8.h),
                                       ),
                                     ),
-                                    Consumer<FavouriteProviderModel>(
-                                      builder: (context, model, child) {
-                                        return Container(
-                                          height: 2.50.h,
-                                          width: 8.0.w,
-                                          child: Align(
-                                            child: Center(
-                                              child: IconButton(
-                                                  padding: EdgeInsets.zero,
-                                                  icon: Icon(
-                                                    model.cartBooks.contains(
-                                                            widget.recentlist
-                                                                .bookname)
-                                                        ? Icons.favorite
-                                                        : Icons
-                                                            .favorite_border_outlined,
-                                                    size: 2.5.h,
-                                                  ),
-                                                  onPressed: () async {}),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    ),
+                                    // Consumer<FavouriteProviderModel>(
+                                    //   builder: (context, model, child) {
+                                    //     return Container(
+                                    //       height: 2.50.h,
+                                    //       width: 8.0.w,
+                                    //       child: Align(
+                                    //         child: Center(
+                                    //           child: IconButton(
+                                    //               padding: EdgeInsets.zero,
+                                    //               icon: Icon(
+                                    //                 model.cartBooks.contains(
+                                    //                         widget.recentlist
+                                    //                             .bookname)
+                                    //                     ? Icons.favorite
+                                    //                     : Icons
+                                    //                         .favorite_border_outlined,
+                                    //                 size: 2.5.h,
+                                    //               ),
+                                    //               onPressed: () async {}
+                                    //               ),
+                                    //         ),
+                                    //       ),
+                                    //     );
+                                    //   },
+                                    // ),
                                   ],
                                 ),
                               ),
@@ -435,6 +437,10 @@ class _MagazineDetailsState extends State<MagazineDetails> {
                       )
                     ],
                   ),
+                ),
+                MagazineTabBar(
+                  aboutNote: widget.recentlist.cover_note.toString(),
+                  bookdetails: widget.recentlist,
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 00.00.h),
