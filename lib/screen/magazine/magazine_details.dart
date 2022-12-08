@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dhanshirisapp/provider/auth.dart';
@@ -114,12 +116,16 @@ class _MagazineDetailsState extends State<MagazineDetails> {
                         children: [
                           GestureDetector(
                             onTap: () {
+                              String hosturl = widget.recentlist.magazine_file;
+                              String newurl = hosturl.replaceAll(
+                                  'http://127.0.0.1:8000/',
+                                  'https://boichitro.com.bd/');
+
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => ReadMagazine(
-                                          magazinePdf: widget
-                                              .recentlist.magazine_file)));
+                                      builder: (context) =>
+                                          ReadMagazine(magazinePdf: newurl)));
                             },
                             child: CachedNetworkImage(
                               imageUrl:
@@ -203,14 +209,19 @@ class _MagazineDetailsState extends State<MagazineDetails> {
                                         flex: 3,
                                         child: GestureDetector(
                                           onTap: () {
+                                            String hosturl =
+                                                widget.recentlist.magazine_file;
+                                            String newurl = hosturl.replaceAll(
+                                                'http://127.0.0.1:8000/',
+                                                'https://boichitro.com.bd/');
+
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
                                                         ReadMagazine(
-                                                            magazinePdf: widget
-                                                                .recentlist
-                                                                .magazine_file)));
+                                                            magazinePdf:
+                                                                newurl)));
                                           },
                                           child: Container(
                                               margin: EdgeInsets.only(
@@ -253,14 +264,17 @@ class _MagazineDetailsState extends State<MagazineDetails> {
                                   width: 34.0.w,
                                   child: GestureDetector(
                                     onTap: () {
+                                      String hosturl =
+                                          widget.recentlist.magazine_file;
+                                      String newurl = hosturl.replaceAll(
+                                          'http://127.0.0.1:8000/',
+                                          'https://boichitro.com.bd/');
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   ReadMagazine(
-                                                      magazinePdf: widget
-                                                          .recentlist
-                                                          .magazine_file)));
+                                                      magazinePdf: newurl)));
                                     },
                                     child: Container(
                                         margin: EdgeInsets.only(
@@ -496,12 +510,16 @@ class _MagazineDetailsState extends State<MagazineDetails> {
                       children: [
                         GestureDetector(
                           onTap: () {
+                            String hosturl = widget.recentlist.magazine_file;
+                            String newurl = hosturl.replaceAll(
+                                'http://127.0.0.1:8000/',
+                                'https://boichitro.com.bd/');
+
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ReadMagazine(
-                                        magazinePdf:
-                                            widget.recentlist.magazine_file)));
+                                    builder: (context) =>
+                                        ReadMagazine(magazinePdf: newurl)));
                           },
                           child: CachedNetworkImage(
                             imageUrl:
@@ -585,14 +603,19 @@ class _MagazineDetailsState extends State<MagazineDetails> {
                                       flex: 3,
                                       child: GestureDetector(
                                         onTap: () {
+                                          String hosturl =
+                                              widget.recentlist.magazine_file;
+                                          String newurl = hosturl.replaceAll(
+                                              'http://127.0.0.1:8000/',
+                                              'https://boichitro.com.bd/');
+
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       ReadMagazine(
-                                                          magazinePdf: widget
-                                                              .recentlist
-                                                              .magazine_file)));
+                                                          magazinePdf:
+                                                              newurl)));
                                         },
                                         child: Container(
                                             margin: EdgeInsets.only(

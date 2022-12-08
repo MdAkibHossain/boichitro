@@ -11,24 +11,23 @@ import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 class ReadMagazine extends StatefulWidget {
   final magazinePdf;
   ReadMagazine({required this.magazinePdf});
-
   @override
   State<ReadMagazine> createState() => _ReadMagazineState();
 }
 
 class _ReadMagazineState extends State<ReadMagazine> {
-  bool _isLoading = true;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColorFactory.appPrimaryColor,
         elevation: 0,
-        title: Text(LocaleKeys.magazine.tr()),
+        title: Text(
+            // widget.magazinePdf
+            LocaleKeys.magazine.tr()),
       ),
       body: const PDF().fromUrl(
-        'https://boichitro.com.bd/media/magazines/1971_by_Humayum_Ahmed_LgK344Y.PDF',
+        widget.magazinePdf,
         placeholder: (double progress) => Center(child: Text('$progress %')),
         errorWidget: (dynamic error) => Center(child: Text(error.toString())),
       ),
