@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:typed_data';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dhanshirisapp/constants/app_constants.dart';
@@ -8,6 +9,7 @@ import 'package:dhanshirisapp/provider/favourit_list.dart';
 import 'package:dhanshirisapp/provider/theme_provider.dart';
 import 'package:dhanshirisapp/screen/book_api_call.dart';
 import 'package:dhanshirisapp/screen/book_screen/landscope/modal_tab_bar.dart';
+import 'package:dhanshirisapp/screen/magazine/magazineread.dart';
 import 'package:dhanshirisapp/screen/user/user_profile_edit.dart';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -230,6 +232,8 @@ class _BookDetailsState extends State<BookDetails> {
                                           onTap: () {
                                             //_showMyDialog(context);
 
+                                            log("Testeddddddddddddddddddddddddddddddddd");
+
                                             //---------------- Subcription ---------------
                                             if (authProvider.userInfodata!.email != '' &&
                                                 authProvider
@@ -238,18 +242,25 @@ class _BookDetailsState extends State<BookDetails> {
                                                 authProvider.userInfodata!
                                                         .full_name !=
                                                     '') {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          BookApiCall(
-                                                            book_id: widget
-                                                                .recentlist.pk,
-                                                            book_name: widget
-                                                                .recentlist
-                                                                .bookname
-                                                                .toString(),
-                                                          )));
+                                              if (widget.recentlist.book_type ==
+                                                  'ebook') {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            BookApiCall(
+                                                              book_id: widget
+                                                                  .recentlist
+                                                                  .pk,
+                                                              book_name: widget
+                                                                  .recentlist
+                                                                  .bookname
+                                                                  .toString(),
+                                                            )));
+                                              } else {
+                                                // ReadPdf(magazinePdf: widget.recentlist,);
+
+                                              }
                                             } else {
                                               Navigator.push(
                                                   context,
@@ -310,6 +321,7 @@ class _BookDetailsState extends State<BookDetails> {
                                   child: GestureDetector(
                                     onTap: () {
                                       //_showMyDialog(context);
+                                      log("Its wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 
                                       //---------------- Subcription ---------------
                                       if (authProvider.userInfodata!.email != '' &&
@@ -318,17 +330,33 @@ class _BookDetailsState extends State<BookDetails> {
                                           authProvider
                                                   .userInfodata!.full_name !=
                                               '') {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    BookApiCall(
-                                                      book_id:
-                                                          widget.recentlist.pk,
-                                                      book_name: widget
-                                                          .recentlist.bookname
-                                                          .toString(),
-                                                    )));
+                                        if (widget.recentlist.book_type ==
+                                            'ebook') {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      BookApiCall(
+                                                        book_id: widget
+                                                            .recentlist.pk,
+                                                        book_name: widget
+                                                            .recentlist.bookname
+                                                            .toString(),
+                                                      )));
+                                        } else {
+                                          String hosturl = widget.recentlist;
+                                          String newurl =
+                                              'https://boichitro.com.bd' +
+                                                  hosturl;
+                                          log(newurl);
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ReadMagazine(
+                                                          magazinePdf:
+                                                              newurl)));
+                                        }
                                       } else {
                                         Navigator.push(
                                             context,
