@@ -224,6 +224,8 @@ class _BookCartState extends State<BookCart> {
                                                 book_name: widget
                                                     .bookdetails.bookname
                                                     .toString(),
+                                                book_type: widget
+                                                    .bookdetails.book_type,
                                               )));
                                 } else {
                                   Navigator.push(
@@ -308,6 +310,8 @@ class _BookCartState extends State<BookCart> {
                                                 book_name: widget
                                                     .bookdetails.bookname
                                                     .toString(),
+                                                book_type: widget
+                                                    .bookdetails.book_type,
                                               )));
                                 } else {
                                   Navigator.push(

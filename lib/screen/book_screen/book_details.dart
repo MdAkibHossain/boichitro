@@ -133,6 +133,8 @@ class _BookDetailsState extends State<BookDetails> {
                                               book_name: widget
                                                   .recentlist.bookname
                                                   .toString(),
+                                              book_type:
+                                                  widget.recentlist.book_type,
                                             )));
                               } else {
                                 Navigator.push(
@@ -256,6 +258,9 @@ class _BookDetailsState extends State<BookDetails> {
                                                                   .recentlist
                                                                   .bookname
                                                                   .toString(),
+                                                              book_type: widget
+                                                                  .recentlist
+                                                                  .book_type,
                                                             )));
                                               } else {
                                                 // ReadPdf(magazinePdf: widget.recentlist,);
@@ -321,7 +326,6 @@ class _BookDetailsState extends State<BookDetails> {
                                   child: GestureDetector(
                                     onTap: () {
                                       //_showMyDialog(context);
-                                      log("Its wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 
                                       //---------------- Subcription ---------------
                                       if (authProvider.userInfodata!.email != '' &&
@@ -332,6 +336,7 @@ class _BookDetailsState extends State<BookDetails> {
                                               '') {
                                         if (widget.recentlist.book_type ==
                                             'ebook') {
+                                          log("Its wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
@@ -342,6 +347,9 @@ class _BookDetailsState extends State<BookDetails> {
                                                         book_name: widget
                                                             .recentlist.bookname
                                                             .toString(),
+                                                        book_type: widget
+                                                            .recentlist
+                                                            .book_type,
                                                       )));
                                         } else {
                                           String hosturl = widget.recentlist;
@@ -668,6 +676,8 @@ class _BookDetailsState extends State<BookDetails> {
                                             book_name: widget
                                                 .recentlist.bookname
                                                 .toString(),
+                                            book_type:
+                                                widget.recentlist.book_type,
                                           )));
                             } else {
                               Navigator.push(
@@ -785,6 +795,9 @@ class _BookDetailsState extends State<BookDetails> {
                                                               .recentlist
                                                               .bookname
                                                               .toString(),
+                                                          book_type: widget
+                                                              .recentlist
+                                                              .book_type,
                                                         )));
                                           } else {
                                             Navigator.push(
@@ -864,6 +877,8 @@ class _BookDetailsState extends State<BookDetails> {
                                                     book_name: widget
                                                         .recentlist.bookname
                                                         .toString(),
+                                                    book_type: widget
+                                                        .recentlist.book_type,
                                                   )));
                                     } else {
                                       Navigator.push(

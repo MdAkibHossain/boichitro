@@ -7,6 +7,7 @@ import 'package:dhanshirisapp/provider/order.dart';
 import 'package:dhanshirisapp/screen/book_read_page/book_read_page.dart';
 import 'package:dhanshirisapp/screen/book_read_page_details.dart';
 import 'package:dhanshirisapp/screen/book_read_screen.dart';
+import 'package:dhanshirisapp/screen/magazine/magazineread.dart';
 import 'package:dhanshirisapp/services/secure_storage_service.dart';
 import 'package:dhanshirisapp/widget/drower_customer/add_drower_customer.dart';
 import 'package:dhanshirisapp/widget/no_data_available.dart';
@@ -19,12 +20,11 @@ import 'package:sizer/sizer.dart';
 class BookApiCall extends StatefulWidget {
   final int? book_id;
   final String? book_name;
+  final String? book_type;
   //final bool is_pdf;
-  BookApiCall({
-    required this.book_id,
-    required this.book_name,
-    //required this.is_pdf
-  });
+  BookApiCall({required this.book_id, required this.book_name, this.book_type
+      //required this.is_pdf
+      });
   @override
   _BookApiCallState createState() => _BookApiCallState();
 }
@@ -81,13 +81,15 @@ class _BookApiCallState extends State<BookApiCall> {
                         ? child as Widget
                         : model.BookPage!.length == 0
                             ? NodataAvailableClass('Book is Empty !', 80.0.h)
-                            : BookReadPage(
-                                book_details: book_details,
-                                book_id: widget.book_id,
-                                book_name: widget.book_name,
-                                bookpagemodel: model,
-                                orther: order,
-                              );
+                            : widget.book_type == 'ebook'
+                                ? BookReadPage(
+                                    book_details: book_details,
+                                    book_id: widget.book_id,
+                                    book_name: widget.book_name,
+                                    bookpagemodel: model,
+                                    orther: order,
+                                  )
+                                : ReadMagazine(magazinePdf: book_details);
                   })),
     );
   }
