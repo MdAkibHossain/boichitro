@@ -598,7 +598,7 @@ class _BookDetailsState extends State<BookDetails> {
                 Padding(
                   padding: EdgeInsets.only(top: 00.00.h),
                   child: Container(
-                    height: 13.0.h,
+                    // height: 15.0.h,
                     width: 100.0.w,
                     child: Image(
                       image: AssetImage(

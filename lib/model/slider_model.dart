@@ -16,24 +16,25 @@ class SliderModel {
   String? book_type;
   String? book_image_url;
   bool? is_paid;
+  bool? is_pdf;
 
-  SliderModel({
-    this.slider__image,
-    @required this.pk,
-    @required this.short_name,
-    @required this.rating,
-    @required this.bookname,
-    @required this.cover_image,
-    @required this.description,
-    @required this.edition,
-    @required this.cover_note,
-    @required this.isbn,
-    @required this.author,
-    @required this.publisher,
-    required this.is_paid,
-    required this.book_image_url,
-    required this.book_type,
-  });
+  SliderModel(
+      {this.slider__image,
+      @required this.pk,
+      @required this.short_name,
+      @required this.rating,
+      @required this.bookname,
+      @required this.cover_image,
+      @required this.description,
+      @required this.edition,
+      @required this.cover_note,
+      @required this.isbn,
+      @required this.author,
+      @required this.publisher,
+      required this.is_paid,
+      required this.book_image_url,
+      required this.book_type,
+      required this.is_pdf});
 
   factory SliderModel.fromJson(Map<String, dynamic> map) {
     return SliderModel(
@@ -50,6 +51,7 @@ class SliderModel {
         publisher: map['fields']['publisher'],
         cover_note: map['fields']['cover_note'],
         book_type: map['fields']['book_type'],
+        is_pdf: map['fields']['is_pdf'],
         is_paid:
             map['fields']['is_paid'] == null ? false : map['fields']['is_paid'],
         book_image_url: map['fields']['book_image_url']);

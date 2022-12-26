@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dhanshirisapp/screen/book_api_call.dart';
 import 'package:dhanshirisapp/screen/magazine/magazine_details.dart';
+import 'package:dhanshirisapp/screen/magazine/magazineread.dart';
 import 'package:dhanshirisapp/screen/user/user_profile_edit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -215,16 +216,17 @@ class _MagazineCartState extends State<MagazineCart> {
                                   print(authProvider.userInfodata!.full_name);
                                   print(authProvider.userInfodata!.phone);
 
+                                  String hosturl =
+                                      widget.magazinedetails.magazine_file;
+                                  String newurl = hosturl.replaceAll(
+                                      'http://127.0.0.1:8000/',
+                                      'https://boichitro.com.bd/');
+
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => BookApiCall(
-                                                book_id:
-                                                    widget.magazinedetails.pk,
-                                                book_name: widget
-                                                    .magazinedetails.bookname
-                                                    .toString(),
-                                              )));
+                                          builder: (context) => ReadMagazine(
+                                              magazinePdf: newurl)));
                                 } else {
                                   Navigator.push(
                                       context,
@@ -301,16 +303,17 @@ class _MagazineCartState extends State<MagazineCart> {
                                             "Male" ||
                                         authProvider.userInfodata!.gender ==
                                             "Female")) {
+                                  String hosturl =
+                                      widget.magazinedetails.magazine_file;
+                                  String newurl = hosturl.replaceAll(
+                                      'http://127.0.0.1:8000/',
+                                      'https://boichitro.com.bd/');
+
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => BookApiCall(
-                                                book_id:
-                                                    widget.magazinedetails.pk,
-                                                book_name: widget
-                                                    .magazinedetails.bookname
-                                                    .toString(),
-                                              )));
+                                          builder: (context) => ReadMagazine(
+                                              magazinePdf: newurl)));
                                 } else {
                                   Navigator.push(
                                       context,

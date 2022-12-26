@@ -28,7 +28,6 @@ class BookReadtModel with ChangeNotifier {
   Future<Map<String, dynamic>?> bookreadapicall(token, int book_id) async {
     isloadingmodel = true;
     String? mapResponse1 = "null";
-    var responseToReturn;
     // String? pdf_link = "null";
     notifyListeners();
     try {
@@ -54,7 +53,6 @@ class BookReadtModel with ChangeNotifier {
             mapResponse1!.replaceAll(" ", " ").replaceAll("\n", " ");
         print("bbbbbbbbbbbbbbbbbbbbb");
         print(string1);
-        responseToReturn = string1;
         developer.log(string1);
         print("ccccccccccccccccccccc");
         //Map<String, dynamic>
@@ -81,7 +79,9 @@ class BookReadtModel with ChangeNotifier {
       notifyListeners();
       print(e);
     }
-    return {'book_details': mapResponse1, 'response': responseToReturn};
+    return {
+      'book_details': mapResponse1,
+    };
   }
 
   Future<Map<String, dynamic>?> audioBookapicall(token, book_id) async {

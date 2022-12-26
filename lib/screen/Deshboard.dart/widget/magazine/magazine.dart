@@ -28,7 +28,7 @@ class _MagazineWidgetState extends State<MagazineWidget> {
     return Column(
       children: [
         TitleNameWithButton(
-          title: LocaleKeys.mostpopular.tr(),
+          title: LocaleKeys.magazine.tr(),
           ontap: () {
             Navigator.push(
                 context,

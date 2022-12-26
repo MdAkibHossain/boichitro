@@ -19,22 +19,23 @@ class ProductList {
   String? publisher;
   String? book_type;
   bool? is_paid;
+  bool? is_pdf;
 
-  ProductList({
-    @required this.pk,
-    @required this.short_name,
-    @required this.rating,
-    @required this.bookname,
-    @required this.cover_image,
-    @required this.description,
-    @required this.edition,
-    @required this.cover_note,
-    @required this.isbn,
-    @required this.author,
-    @required this.publisher,
-    required this.book_type,
-    required this.is_paid,
-  });
+  ProductList(
+      {@required this.pk,
+      @required this.short_name,
+      @required this.rating,
+      @required this.bookname,
+      @required this.cover_image,
+      @required this.description,
+      @required this.edition,
+      @required this.cover_note,
+      @required this.isbn,
+      @required this.author,
+      @required this.publisher,
+      required this.book_type,
+      required this.is_paid,
+      required this.is_pdf});
 }
 
 class CategoriesProductListModel with ChangeNotifier {
@@ -130,6 +131,7 @@ class CategoriesProductListModel with ChangeNotifier {
             isbn: datalist['isbn'],
             cover_note: datalist['cover_note'],
             is_paid: datalist['is_paid'],
+            is_pdf: datalist['is_pdf'],
             author: datalist['author_name'].toString(),
             publisher: datalist['publisher'].toString(),
             book_type: datalist['book_type'].toString());
