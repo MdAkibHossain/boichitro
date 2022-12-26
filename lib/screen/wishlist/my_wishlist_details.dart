@@ -109,6 +109,7 @@ class _BookDetailsState extends State<WishlistBookDetails> {
                                     book_id: widget.recentlist.book_id,
                                     book_name:
                                         widget.recentlist.bookname.toString(),
+                                    is_pdf: widget.recentlist.is_pdf,
                                   )));
                     } else {
                       Navigator.push(
@@ -244,6 +245,9 @@ class _BookDetailsState extends State<WishlistBookDetails> {
                                                                   .recentlist
                                                                   .bookname
                                                                   .toString(),
+                                                              is_pdf: widget
+                                                                  .recentlist
+                                                                  .is_pdf,
                                                             )));
                                               } else {
                                                 Navigator.push(
@@ -328,6 +332,8 @@ class _BookDetailsState extends State<WishlistBookDetails> {
                                                         book_name: widget
                                                             .recentlist.bookname
                                                             .toString(),
+                                                        is_pdf: widget
+                                                            .recentlist.is_pdf,
                                                       )));
                                         } else {
                                           Navigator.push(

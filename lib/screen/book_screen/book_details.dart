@@ -133,8 +133,7 @@ class _BookDetailsState extends State<BookDetails> {
                                               book_name: widget
                                                   .recentlist.bookname
                                                   .toString(),
-                                              book_type:
-                                                  widget.recentlist.book_type,
+                                              is_pdf: widget.recentlist.is_pdf,
                                             )));
                               } else {
                                 Navigator.push(
@@ -258,9 +257,9 @@ class _BookDetailsState extends State<BookDetails> {
                                                                   .recentlist
                                                                   .bookname
                                                                   .toString(),
-                                                              book_type: widget
+                                                              is_pdf: widget
                                                                   .recentlist
-                                                                  .book_type,
+                                                                  .is_pdf,
                                                             )));
                                               } else {
                                                 // ReadPdf(magazinePdf: widget.recentlist,);
@@ -347,9 +346,8 @@ class _BookDetailsState extends State<BookDetails> {
                                                         book_name: widget
                                                             .recentlist.bookname
                                                             .toString(),
-                                                        book_type: widget
-                                                            .recentlist
-                                                            .book_type,
+                                                        is_pdf: widget
+                                                            .recentlist.is_pdf,
                                                       )));
                                         } else {
                                           String hosturl = widget.recentlist;
@@ -676,8 +674,7 @@ class _BookDetailsState extends State<BookDetails> {
                                             book_name: widget
                                                 .recentlist.bookname
                                                 .toString(),
-                                            book_type:
-                                                widget.recentlist.book_type,
+                                            is_pdf: widget.recentlist.is_pdf,
                                           )));
                             } else {
                               Navigator.push(
@@ -795,9 +792,9 @@ class _BookDetailsState extends State<BookDetails> {
                                                               .recentlist
                                                               .bookname
                                                               .toString(),
-                                                          book_type: widget
+                                                          is_pdf: widget
                                                               .recentlist
-                                                              .book_type,
+                                                              .is_pdf,
                                                         )));
                                           } else {
                                             Navigator.push(
@@ -877,8 +874,8 @@ class _BookDetailsState extends State<BookDetails> {
                                                     book_name: widget
                                                         .recentlist.bookname
                                                         .toString(),
-                                                    book_type: widget
-                                                        .recentlist.book_type,
+                                                    is_pdf: widget
+                                                        .recentlist.is_pdf,
                                                   )));
                                     } else {
                                       Navigator.push(

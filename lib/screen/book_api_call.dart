@@ -8,6 +8,7 @@ import 'package:dhanshirisapp/screen/book_read_page/book_read_page.dart';
 import 'package:dhanshirisapp/screen/book_read_page_details.dart';
 import 'package:dhanshirisapp/screen/book_read_screen.dart';
 import 'package:dhanshirisapp/screen/magazine/magazineread.dart';
+import 'package:dhanshirisapp/screen/wishlist/pdf_book_read.dart';
 import 'package:dhanshirisapp/services/secure_storage_service.dart';
 import 'package:dhanshirisapp/widget/drower_customer/add_drower_customer.dart';
 import 'package:dhanshirisapp/widget/no_data_available.dart';
@@ -20,11 +21,14 @@ import 'package:sizer/sizer.dart';
 class BookApiCall extends StatefulWidget {
   final int? book_id;
   final String? book_name;
-  final String? book_type;
+  final bool? is_pdf;
   //final bool is_pdf;
-  BookApiCall({required this.book_id, required this.book_name, this.book_type
-      //required this.is_pdf
-      });
+  BookApiCall({
+    required this.book_id,
+    required this.book_name,
+    this.is_pdf,
+    // required this.is_pdf
+  });
   @override
   _BookApiCallState createState() => _BookApiCallState();
 }
@@ -33,6 +37,8 @@ class _BookApiCallState extends State<BookApiCall> {
   late List<Note> notes;
   Note? notesdata;
   String? book_details;
+  var pdf_book_link;
+  var pdf_link;
   @override
   void didChangeDependencies() async {
     // notes = await NotesDatabase.instance.readAllNotes();
@@ -58,39 +64,38 @@ class _BookApiCallState extends State<BookApiCall> {
     Map<String, dynamic>? data =
         await bookReadtModel.bookreadapicall(token, widget.book_id!);
     book_details = data!['book_details'];
-    // Map<String, dynamic>? audiobook =
-    //     await bookReadtModel.audioBookapicall(token, widget.book_id);
+    pdf_book_link = data['book_details'];
+    print('aaaaaaaaaaaaaaaa');
+    pdf_link = pdf_book_link.toString().split(":")[1].split('"')[1];
+    print('aaaaaaaaaaaaaaaa');
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     Orther order = Provider.of<Orther>(context);
-    // bool is_pdf = true;
     return Scaffold(
-      body:
-          // widget. is_pdf
-          //     ? Text("data")
-          //     :
-          Container(
-              child: Consumer<BookReadtModel>(
-                  child: Center(child: CircularProgressIndicator()),
-                  builder: (context, model, child) {
-                    return model.isloadingmodel
-                        ? child as Widget
-                        : model.BookPage!.length == 0
-                            ? NodataAvailableClass('Book is Empty !', 80.0.h)
-                            : widget.book_type == 'ebook'
-                                ? BookReadPage(
-                                    book_details: book_details,
-                                    book_id: widget.book_id,
-                                    book_name: widget.book_name,
-                                    bookpagemodel: model,
-                                    orther: order,
-                                  )
-                                : ReadMagazine(magazinePdf: book_details);
-                  })),
+      body: Container(
+          child: Consumer<BookReadtModel>(
+              child: Center(child: CircularProgressIndicator()),
+              builder: (context, model, child) {
+                return model.isloadingmodel
+                    ? child as Widget
+                    : model.BookPage!.length == 0
+                        ? NodataAvailableClass('Book is Empty !', 80.0.h)
+                        : widget.is_pdf == true
+                            ? ReadPdf(
+                                book_details: pdf_link,
+                              )
+                            : BookReadPage(
+                                book_details: book_details,
+                                book_id: widget.book_id,
+                                book_name: widget.book_name,
+                                bookpagemodel: model,
+                                orther: order,
+                                is_pdf: widget.is_pdf,
+                              );
+              })),
     );
   }
 }

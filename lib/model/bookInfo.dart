@@ -16,6 +16,7 @@ class BookInfo {
   String? book_image_url;
   String? banner_image;
   bool? is_paid;
+  bool? is_pdf;
 
   BookInfo({
     @required this.pk,
@@ -29,6 +30,7 @@ class BookInfo {
     @required this.isbn,
     @required this.author,
     @required this.publisher,
+    @required this.is_pdf,
     required this.banner_image,
     required this.is_paid,
     required this.book_image_url,
@@ -50,6 +52,7 @@ class BookInfo {
         publisher: map['fields']['publisher'],
         cover_note: map['fields']['cover_note'],
         book_type: map['fields']['book_type'],
+        is_pdf: map['fields']['is_pdf'],
         is_paid:
             map['fields']['is_paid'] == null ? false : map['fields']['is_paid'],
         book_image_url: map['fields']['book_image_url']);
