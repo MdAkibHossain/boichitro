@@ -52,7 +52,7 @@ class _MagazineWidgetState extends State<MagazineWidget> {
               return modal.isLoadingAudioBookInfo
                   ? child as Widget
                   : modal.magazine!.length == 0
-                      ? NodataAvailableClass('No Audio Book Available', 25.0.h)
+                      ? NodataAvailableClass('No Magazine Available', 25.0.h)
                       : ListView.builder(
                           shrinkWrap: false,
                           scrollDirection: Axis.horizontal,
