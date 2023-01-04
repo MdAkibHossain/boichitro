@@ -22,33 +22,33 @@ class SlideItem extends StatelessWidget {
         Provider.of<AuthProvider>(context, listen: false);
     return GestureDetector(
       onTap: () {
-        if (sliderimage.book_type == 'ebook') {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => BookDetails(
-                        sliderimage,
-                        sliderimage.cover_image.toString(),
-                      )));
-        }
-        if (sliderimage.book_type == 'magazine') {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => MagazineDetails(
-                        sliderimage,
-                        sliderimage.cover_image.toString(),
-                      )));
-        } else {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AudioBookDetails(
-                  sliderimage,
-                  sliderimage.cover_image.toString(),
-                ),
-              ));
-        }
+        // if (sliderimage.book_type == 'ebook') {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => BookDetails(
+                      sliderimage,
+                      sliderimage.cover_image.toString(),
+                    )));
+        //   }
+        //   if (sliderimage.book_type == 'magazine') {
+        //     Navigator.push(
+        //         context,
+        //         MaterialPageRoute(
+        //             builder: (context) => MagazineDetails(
+        //                   sliderimage,
+        //                   sliderimage.cover_image.toString(),
+        //                 )));
+        //   } else {
+        //     Navigator.push(
+        //         context,
+        //         MaterialPageRoute(
+        //           builder: (context) => AudioBookDetails(
+        //             sliderimage,
+        //             sliderimage.cover_image.toString(),
+        //           ),
+        //         ));
+        //   }
       },
       child: Column(
         children: [
