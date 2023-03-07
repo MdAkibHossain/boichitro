@@ -30,8 +30,7 @@ class SlideItem extends StatelessWidget {
                       sliderimage,
                       sliderimage.cover_image.toString(),
                     )));
-        //   }
-        //   if (sliderimage.book_type == 'magazine') {
+        //   } else if (sliderimage.book_type == 'magazine') {
         //     Navigator.push(
         //         context,
         //         MaterialPageRoute(

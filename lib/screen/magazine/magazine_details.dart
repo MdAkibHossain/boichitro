@@ -24,7 +24,7 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class MagazineDetails extends StatefulWidget {
+class MagazineDetails extends StatefulWidget { 
   final recentlist;
   final bytesImage;
   MagazineDetails(this.recentlist, this.bytesImage);
@@ -55,7 +55,7 @@ class _MagazineDetailsState extends State<MagazineDetails> {
       appBar: AppBar(
         backgroundColor: AppColorFactory.appPrimaryColor,
         elevation: 0,
-        title: Text(LocaleKeys.book_details.tr()),
+        title: Text(LocaleKeys.magazine_details.tr()),
       ),
       body: Container(
         child: OrientationBuilder(builder: (context, orientation) {
