@@ -6,6 +6,7 @@ abstract class LocaleKeys {
   static const next = "next";
   static const otp = "otp";
   static const recent = "recent";
+  static const ign = "IGN";
   static const mostpopular = "mostpopular";
   static const categories = "categories";
   static const audiobook = "audiobook";

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dhanshirisapp/model/Category.dart';
 import 'package:dhanshirisapp/model/audio_book.dart';
 import 'package:dhanshirisapp/model/bookInfo.dart';
+import 'package:dhanshirisapp/model/igninfo.dart';
 import 'package:dhanshirisapp/model/magazineinfo.dart';
 import 'package:dhanshirisapp/model/slider_model.dart';
 import 'package:dhanshirisapp/model/sliderimage.dart';
@@ -19,6 +20,7 @@ class CategoryProvider with ChangeNotifier {
   List<String> _categoryNames = [];
   List<BookInfo> _recentBooks = [];
   List<MagazineInfo> _magazine = [];
+  List<IGNInfo> _ign = [];
   List<BookInfo> _popularBooks = [];
   List<AudioBookModel> _audiobookmodel = [];
 
@@ -27,6 +29,7 @@ class CategoryProvider with ChangeNotifier {
   List<String>? get categoryName => _categoryNames;
   List<BookInfo>? get recentBooks => _recentBooks;
   List<MagazineInfo>? get magazine => _magazine;
+  List<IGNInfo>? get ign => _ign;
   List<BookInfo>? get popularBooks => _popularBooks;
   List<AudioBookModel>? get audioBookModel => _audiobookmodel;
   List<SliderModel> get slider_images => _base64BookImages;
@@ -79,9 +82,7 @@ class CategoryProvider with ChangeNotifier {
   Future<dynamic> fetcharecent(token) async {
     String message = '';
     isLoadingBookInfo = true;
-    // notifyListeners();
     try {
-      // var url = Uri.parse('${AppConstants.BASE_URL}/dashboard-content-recent');
       var url = Uri.parse(
           'http://boichitro.com.bd/api/v1/archive/dashboard-content-recent/');
       http.Response response = await http.get(url, headers: {
@@ -90,13 +91,8 @@ class CategoryProvider with ChangeNotifier {
         'Authorization': 'Token $token',
       });
       List<BookInfo> _recentBookTempList = [];
-      // List<BookInfo> _popularBookTempList = [];
       Map<String, dynamic> responseData = JsonDecoder().convert(response.body);
-      // print("rrrrrrrrrrrrrrrrrrrrrrrrrrr");
-      // // // print(responseData);
-      // developer.log(responseData.toString());
 
-      //----parse recent books-----
       responseData['recent'].forEach((dynamic data) {
         final BookInfo _recentBooks = BookInfo.fromJson(data);
         print('rating');
@@ -105,17 +101,8 @@ class CategoryProvider with ChangeNotifier {
           _recentBookTempList.add(_recentBooks);
         }
       });
-      //----parse popular books-----
-      // responseData['popular'].forEach((dynamic data) {
-      //   final BookInfo _popularBooks = BookInfo.fromJson(data);
-      //   print('rating');
-      //   print(_popularBooks.rating);
-      //   if (_popularBooks.book_type != 'audiobook') {
-      //     _popularBookTempList.add(_popularBooks);
-      //   }
-      // });
+
       _recentBooks = _recentBookTempList;
-      // _popularBooks = _popularBookTempList;
       message = 'success';
       isLoadingBookInfo = false;
       notifyListeners();
@@ -128,7 +115,6 @@ class CategoryProvider with ChangeNotifier {
   }
 
   //------------fetch popular ------------
-  // -----fetch books info from api--------
   Future<dynamic> fetchapopular(token) async {
     String message = '';
     isLoadingpopular = true;
@@ -211,6 +197,7 @@ class CategoryProvider with ChangeNotifier {
     return {'message': message};
   }
 
+  //---------------Magazine---------------
   Future<dynamic> fetchmagazine(token) async {
     String message = '';
     isLoadingBookInfo = true;
@@ -231,14 +218,53 @@ class CategoryProvider with ChangeNotifier {
       print(responseData);
       responseData['results'].forEach((dynamic data) {
         final MagazineInfo _magazine = MagazineInfo.fromJson(data);
-        print(
-            '----------------------------------asegasgasgsa-gas-gas-gas-gsa-gs-ags-gs-gs-gs-g-sg-sg-sg-sg-sag-s');
+        print('mmmmmmmmmmmamamamammmamamamamaaamamammam');
 
         print(_magazine.description);
         _magazineTemplist.add(_magazine);
       });
       _magazine = _magazineTemplist;
       isLoadingAudioBookInfo = false;
+      notifyListeners();
+    } catch (error) {
+      //turn off loader
+      message = 'failed';
+      isLoadingAudioBookInfo = false;
+      notifyListeners();
+    }
+    return {'message': message};
+  }
+
+  //---------------IGN ---------------
+  Future<dynamic> fetchIGN(token) async {
+    String message = '';
+    isLoadingBookInfo = true;
+    notifyListeners();
+    print('----------GGGGGGGGGGGGGGGNNNNNNNNNNNNNNNNNIIIIIIIIIII----------');
+    print(token);
+    try {
+      var url = Uri.parse('https://boichitro.com.bd/api/v1/archive/ign/');
+      http.Response response = await http.get(url, headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Token $token',
+      });
+      List<IGNInfo> _ignTemplist = [];
+      Map<String, dynamic> responseData =
+          jsonDecode((utf8.decode(response.bodyBytes)));
+
+      print(responseData);
+      responseData['ign'].forEach((dynamic data) {
+        final IGNInfo _ign = IGNInfo.fromJson(data);
+        print(
+            '-------------------jjjjjjjjjjjjjjjjjjjjjnnnnnnnnjnjnnjnnnnjjnjnjx');
+
+        print(_ign.description);
+        _ignTemplist.add(_ign);
+      });
+      _ign = _ignTemplist;
+      isLoadingAudioBookInfo = false;
+
       notifyListeners();
     } catch (error) {
       //turn off loader

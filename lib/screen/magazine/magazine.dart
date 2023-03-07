@@ -10,10 +10,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../provider/deshboard.dart';
-import '../../../../translations/locale_keys.g.dart';
-import '../../../book_categories_list/book_categorires_list.dart';
-import '../../../book_screen/book_cart.dart';
+import '../../provider/deshboard.dart';
+import '../../translations/locale_keys.g.dart';
+import '../book_categories_list/book_categorires_list.dart';
+import '../book_screen/book_cart.dart';
 
 class MagazineWidget extends StatefulWidget {
   const MagazineWidget({Key? key}) : super(key: key);
