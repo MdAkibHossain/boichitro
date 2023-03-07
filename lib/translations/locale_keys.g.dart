@@ -7,6 +7,7 @@ abstract class LocaleKeys {
   static const otp = "otp";
   static const recent = "recent";
   static const ign = "IGN";
+  static const ign_details = "IGN Details";
   static const mostpopular = "mostpopular";
   static const categories = "categories";
   static const audiobook = "audiobook";
