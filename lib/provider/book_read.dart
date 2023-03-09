@@ -17,6 +17,8 @@ class Bookreadapi {
 class BookReadtModel with ChangeNotifier {
   List<Bookreadapi>? _readbook = [];
   List<Bookreadapi>? get BookPage => _readbook;
+  List<Bookreadapi>? _watchign = [];
+  List<Bookreadapi>? get ign => _watchign;
   List<BookRequestModel> _bookrequest = [];
   List<BookRequestModel> get bookrequested => _bookrequest;
 
@@ -67,6 +69,64 @@ class BookReadtModel with ChangeNotifier {
           _dataList.add(_product);
         });
         _readbook = _dataList;
+        isloadingmodel = false;
+        notifyListeners();
+      } else {
+        mapResponse1 = "null";
+        isloadingmodel = false;
+        notifyListeners();
+      }
+    } catch (e) {
+      isloadingmodel = false;
+      notifyListeners();
+      print(e);
+    }
+    return {
+      'book_details': mapResponse1,
+    };
+  }
+
+  Future<Map<String, dynamic>?> ignapicall(token, int ign_id) async {
+    isloadingmodel = true;
+    String? mapResponse1 = "null";
+    // String? pdf_link = "null";
+    notifyListeners();
+    try {
+      _watchign = [];
+
+      var url =
+          Uri.parse('https://boichitro.com.bd/api/v1/archive/ign/$ign_id/');
+      http.Response response = await http.get(url, headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Token $token',
+      });
+      print('------------------');
+      print(response.body);
+      print('------------------');
+
+      List<Bookreadapi> _dataList = [];
+      if (response.statusCode == 200) {
+        mapResponse1 = jsonDecode((utf8.decode(response.bodyBytes)));
+        print(mapResponse1.runtimeType);
+        String string1 =
+            mapResponse1!.replaceAll(" ", " ").replaceAll("\n", " ");
+        print("bbbbbbbbbbbbbbbbbbbbb");
+        print(string1);
+        developer.log(string1);
+        print("ccccccccccccccccccccc");
+        //Map<String, dynamic>
+        List<dynamic> mapResponse = JsonDecoder().convert(string1);
+        // print("ccccccccccccccccccccccc");
+        // // print(response.body);
+
+        // List<dynamic> _fatchdata = json.decode(response.body);
+        mapResponse.forEach((dynamic datalist) {
+          final Bookreadapi _product = Bookreadapi(page: datalist['page']);
+          //  print(_product.page);
+          _dataList.add(_product);
+        });
+        _watchign = _dataList;
         isloadingmodel = false;
         notifyListeners();
       } else {
