@@ -18,7 +18,7 @@ class _IgnPlayerState extends State<IgnPlayer> {
     super.initState();
 
     _controller = VideoPlayerController.network(
-      'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+      widget.videoUrl,
     );
 
     _initializeVideoPlayerFuture = _controller.initialize();
