@@ -5,7 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dhanshirisapp/screen/book_api_call.dart';
 import 'package:dhanshirisapp/screen/ign/ign_api_call.dart';
 import 'package:dhanshirisapp/screen/ign/ign_details.dart';
-import 'package:dhanshirisapp/screen/ign/watch_ign.dart';
+import 'package:dhanshirisapp/screen/ign/ign_player.dart';
 import 'package:dhanshirisapp/screen/magazine/magazine_details.dart';
 import 'package:dhanshirisapp/screen/magazine/magazineread.dart';
 import 'package:dhanshirisapp/screen/user/user_profile_edit.dart';
@@ -227,7 +227,8 @@ class _IGN_cartState extends State<IGN_cart> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => WatchIGn()));
+                                          builder: (context) => IGNApiCall(
+                                              book_id: widget.igndetails.pk)));
                                 } else {
                                   Navigator.push(
                                       context,

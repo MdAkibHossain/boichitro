@@ -9,7 +9,7 @@ import 'package:dhanshirisapp/res/colors.dart';
 import 'package:dhanshirisapp/screen/book_api_call.dart';
 import 'package:dhanshirisapp/screen/book_screen/landscope/modal_tab_bar.dart';
 import 'package:dhanshirisapp/screen/book_screen/modal_tab_bar.dart';
-import 'package:dhanshirisapp/screen/ign/watch_ign.dart';
+import 'package:dhanshirisapp/screen/ign/ign_api_call.dart';
 import 'package:dhanshirisapp/screen/magazine/magazineabout.dart';
 import 'package:dhanshirisapp/screen/magazine/magazineread.dart';
 import 'package:dhanshirisapp/screen/user/user_profile_edit.dart';
@@ -125,7 +125,8 @@ class _IGNDetailsState extends State<IGNDetails> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => WatchIGn()));
+                                      builder: (context) => IGNApiCall(
+                                          book_id: widget.recentlist.pk)));
                             },
                             child: CachedNetworkImage(
                               imageUrl:
@@ -613,7 +614,9 @@ class _IGNDetailsState extends State<IGNDetails> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      WatchIGn()));
+                                                      IGNApiCall(
+                                                          book_id: widget
+                                                              .recentlist.pk)));
                                         },
                                         child: Container(
                                             margin: EdgeInsets.only(

@@ -17,11 +17,11 @@ class Bookreadapi {
 class BookReadtModel with ChangeNotifier {
   List<Bookreadapi>? _readbook = [];
   List<Bookreadapi>? get BookPage => _readbook;
-  List<Bookreadapi>? _watchign = [];
-  List<Bookreadapi>? get ign => _watchign;
   List<BookRequestModel> _bookrequest = [];
   List<BookRequestModel> get bookrequested => _bookrequest;
 
+  String? _ignurl;
+  String? get ignurl => _ignurl;
   String? audio_book;
   String? get audiobook => audio_book;
   bool isloadingmodel = true;
@@ -86,14 +86,13 @@ class BookReadtModel with ChangeNotifier {
     };
   }
 
+  // ------------------Ign Apiiii --------------
   Future<Map<String, dynamic>?> ignapicall(token, int ign_id) async {
     isloadingmodel = true;
-    String? mapResponse1 = "null";
+    String? mapResponse1 = '';
     // String? pdf_link = "null";
     notifyListeners();
     try {
-      _watchign = [];
-
       var url =
           Uri.parse('https://boichitro.com.bd/api/v1/archive/ign/$ign_id/');
       http.Response response = await http.get(url, headers: {
@@ -104,33 +103,14 @@ class BookReadtModel with ChangeNotifier {
       print('------------------');
       print(response.body);
       print('------------------');
-
-      List<Bookreadapi> _dataList = [];
       if (response.statusCode == 200) {
-        mapResponse1 = jsonDecode((utf8.decode(response.bodyBytes)));
-        print(mapResponse1.runtimeType);
-        String string1 =
-            mapResponse1!.replaceAll(" ", " ").replaceAll("\n", " ");
-        print("bbbbbbbbbbbbbbbbbbbbb");
-        print(string1);
-        developer.log(string1);
-        print("ccccccccccccccccccccc");
-        //Map<String, dynamic>
-        List<dynamic> mapResponse = JsonDecoder().convert(string1);
-        // print("ccccccccccccccccccccccc");
-        // // print(response.body);
+        Map<String, dynamic> mapResponse1 =
+            JsonDecoder().convert(response.body);
 
-        // List<dynamic> _fatchdata = json.decode(response.body);
-        mapResponse.forEach((dynamic datalist) {
-          final Bookreadapi _product = Bookreadapi(page: datalist['page']);
-          //  print(_product.page);
-          _dataList.add(_product);
-        });
-        _watchign = _dataList;
-        isloadingmodel = false;
-        notifyListeners();
-      } else {
-        mapResponse1 = "null";
+        _ignurl = mapResponse1['video_url'];
+        print('------------------');
+        print(_ignurl);
+        print('------------------');
         isloadingmodel = false;
         notifyListeners();
       }
@@ -140,10 +120,11 @@ class BookReadtModel with ChangeNotifier {
       print(e);
     }
     return {
-      'book_details': mapResponse1,
+      'ign_url': ignurl,
     };
   }
 
+  // ------------------Audio book --------------
   Future<Map<String, dynamic>?> audioBookapicall(token, book_id) async {
     isloadingmodel = true;
     notifyListeners();

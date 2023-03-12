@@ -41,17 +41,6 @@ class _BookApiCallState extends State<BookApiCall> {
   var pdf_link;
   @override
   void didChangeDependencies() async {
-    // notes = await NotesDatabase.instance.readAllNotes();
-    // print('-----notes-----');
-    // for (int i = 0; i < notes.length; i++) {
-    //   if (notes[i].book_id == widget.book_id!) {
-    //     notesdata = notes[i];
-    //   } else {
-    //     notesdata = null;
-    //   }
-    //   print(notes[i].book_id);
-    // }
-    //------initial call-------
     var token = await SecureStorageService().readValue(key: AUTH_TOKEN_KEY);
     print(token);
     BookReadtModel bookReadtModel =
