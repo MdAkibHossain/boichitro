@@ -8,6 +8,7 @@ import 'package:dhanshirisapp/screen/book_read_page/book_read_page.dart';
 import 'package:dhanshirisapp/screen/book_read_page_details.dart';
 import 'package:dhanshirisapp/screen/book_read_screen.dart';
 import 'package:dhanshirisapp/screen/ign/ign_player.dart';
+import 'package:dhanshirisapp/screen/ign/webviewplayer.dart';
 import 'package:dhanshirisapp/screen/magazine/magazineread.dart';
 import 'package:dhanshirisapp/screen/wishlist/pdf_book_read.dart';
 import 'package:dhanshirisapp/services/secure_storage_service.dart';
@@ -18,6 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
+import 'package:webview_flutter/platform_interface.dart';
 
 class IGNApiCall extends StatefulWidget {
   final int? book_id;
@@ -65,7 +67,10 @@ class _IGNApiCallState extends State<IGNApiCall> {
               builder: (context, model, child) {
                 return model.isloadingmodel
                     ? child as Widget
-                    : IgnPlayer(videoUrl: ign_details);
+                    // : IgnPlayer(videoUrl: ign_details);
+                    : WebViewVideo(
+                        videoUrl: ign_details,
+                      );
               })),
     );
   }

@@ -265,17 +265,17 @@ class _IGNDetailsState extends State<IGNDetails> {
                                   width: 34.0.w,
                                   child: GestureDetector(
                                     onTap: () {
-                                      String hosturl =
-                                          widget.recentlist.magazine_file;
-                                      String newurl = hosturl.replaceAll(
-                                          'http://127.0.0.1:8000/',
-                                          'https://boichitro.com.bd/');
+                                      // String hosturl =
+                                      //     widget.recentlist.magazine_file;
+                                      // String newurl = hosturl.replaceAll(
+                                      //     'http://127.0.0.1:8000/',
+                                      //     'https://boichitro.com.bd/');
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ReadMagazine(
-                                                      magazinePdf: newurl)));
+                                              builder: (context) => IGNApiCall(
+                                                  book_id:
+                                                      widget.recentlist.pk)));
                                     },
                                     child: Container(
                                         margin: EdgeInsets.only(
