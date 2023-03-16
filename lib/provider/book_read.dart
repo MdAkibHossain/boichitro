@@ -22,6 +22,10 @@ class BookReadtModel with ChangeNotifier {
 
   String? _ignurl;
   String? get ignurl => _ignurl;
+  String? _igntype;
+  String? get igntype => _igntype;
+  String? _ignfile;
+  String? get ignfile => _ignfile;
   String? audio_book;
   String? get audiobook => audio_book;
   bool isloadingmodel = true;
@@ -108,6 +112,8 @@ class BookReadtModel with ChangeNotifier {
             JsonDecoder().convert(response.body);
 
         _ignurl = mapResponse1['video_url'];
+        _igntype = mapResponse1['video_type'];
+        _ignfile = mapResponse1['video_url'];
         print('------------------');
         print(_ignurl);
         print('------------------');
@@ -121,6 +127,8 @@ class BookReadtModel with ChangeNotifier {
     }
     return {
       'ign_url': ignurl,
+      'ign_type': igntype,
+      'ign_file': ignfile,
     };
   }
 

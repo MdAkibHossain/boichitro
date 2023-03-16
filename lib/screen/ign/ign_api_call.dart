@@ -7,6 +7,7 @@ import 'package:dhanshirisapp/provider/order.dart';
 import 'package:dhanshirisapp/screen/book_read_page/book_read_page.dart';
 import 'package:dhanshirisapp/screen/book_read_page_details.dart';
 import 'package:dhanshirisapp/screen/book_read_screen.dart';
+import 'package:dhanshirisapp/screen/ign/ign_file_converter.dart';
 import 'package:dhanshirisapp/screen/ign/ign_player.dart';
 import 'package:dhanshirisapp/screen/ign/webviewplayer.dart';
 import 'package:dhanshirisapp/screen/magazine/magazineread.dart';
@@ -31,9 +32,10 @@ class IGNApiCall extends StatefulWidget {
 }
 
 class _IGNApiCallState extends State<IGNApiCall> {
-  late List<Note> notes;
-  Note? notesdata;
-  var ign_details;
+  var ign_type;
+  var ign_url;
+  var ign_file;
+
   @override
   void didChangeDependencies() async {
     var token = await SecureStorageService().readValue(key: AUTH_TOKEN_KEY);
@@ -47,10 +49,17 @@ class _IGNApiCallState extends State<IGNApiCall> {
     print(widget.book_id);
     Map<String, dynamic>? data =
         await bookReadtModel.ignapicall(token, widget.book_id!);
-    ign_details = data!['ign_url'];
+    ign_url = data!['ign_url'];
+    ign_type = data['ign_type'];
+    ign_file = data['ign_file'];
+
     print(
         '----------------iiiiiiiiiiiiiiiiiiiiiigggggggggggggggggnnnnnnnnnnnnnnnn--------------');
-    print(ign_details);
+    print(ign_type);
+    print(ign_file);
+    print(ign_url);
+
+    print(ign_url);
     print(widget.book_id);
     print(
         '----------------iiiiiiiiiiiiiiiiiiiiiigggggggggggggggggnnnnnnnnnnnnnnnn--------------');
@@ -59,7 +68,6 @@ class _IGNApiCallState extends State<IGNApiCall> {
 
   @override
   Widget build(BuildContext context) {
-    Orther order = Provider.of<Orther>(context);
     return Scaffold(
       body: Container(
           child: Consumer<BookReadtModel>(
@@ -67,10 +75,11 @@ class _IGNApiCallState extends State<IGNApiCall> {
               builder: (context, model, child) {
                 return model.isloadingmodel
                     ? child as Widget
-                    // : IgnPlayer(videoUrl: ign_details);
-                    : WebViewVideo(
-                        videoUrl: ign_details,
-                      );
+                    : ign_type == 'file'
+                        ? IGN_File_Converter(fileUrl: ign_file)
+                        : WebViewVideo(
+                            videoUrl: ign_url,
+                          );
               })),
     );
   }
