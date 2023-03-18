@@ -113,7 +113,7 @@ class BookReadtModel with ChangeNotifier {
 
         _ignurl = mapResponse1['video_url'];
         _igntype = mapResponse1['video_type'];
-        _ignfile = mapResponse1['video_url'];
+        _ignfile = mapResponse1['video_file'];
         print('------------------');
         print(_ignurl);
         print('------------------');
