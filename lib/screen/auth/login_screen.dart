@@ -5,6 +5,7 @@ import 'package:dhanshirisapp/screen/Deshboard.dart/Dashboard.dart';
 import 'package:dhanshirisapp/screen/auth/dialog.dart';
 import 'package:dhanshirisapp/screen/auth/dialog_loader.dart';
 import 'package:dhanshirisapp/screen/auth/or_box.dart';
+import 'package:dhanshirisapp/screen/auth/terms&Cons_page.dart';
 import 'package:dhanshirisapp/screen/first_loadingscreen.dart';
 import 'package:dhanshirisapp/screen/auth/otp_screen.dart';
 import 'package:dhanshirisapp/translations/locale_keys.g.dart';
@@ -30,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool is_futurebuilder = false;
   bool is_futurebuilders = false;
   String? dropdownValue = 'Eng';
-
+  bool _isChecked = false;
   List<String> lanvalur = ['Eng', 'বাংলা'];
   @override
   void initState() {
@@ -142,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
               // ),
 
               SizedBox(
-                height: 18.0.h,
+                height: 11.0.h,
               ),
 
               // Container(
@@ -212,6 +213,43 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   )),
               SizedBox(height: 3.0.h),
+              Padding(
+                padding: EdgeInsets.only(left: 7.w, right: 7.w),
+                child: CheckboxListTile(
+                  value: _isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      _isChecked = value!;
+                    });
+                  },
+                  title: Row(
+                    children: [
+                      Text(
+                        'I accept the ',
+                        style: TextStyle(
+                          fontSize: 12.0.sp,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => TermsandCons(
+                                      termsandconsUrl:
+                                          'https://www.freeprivacypolicy.com/live/5173e110-3e2a-4356-8ea2-fb57bb120eea?fbclid=IwAR3DfPkXk-jrW0q4Sz2rKNmW0LhMl9X26fr9Wx059Ha3TJhQOXnUgPAXPDU')));
+                        },
+                        child: Text(
+                          'terms and conditions',
+                          style:
+                              TextStyle(fontSize: 12.0.sp, color: Colors.blue),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              // SizedBox(height: 3.0.h),
               Center(
                 child: Container(
                   width: 25.0.w,
@@ -237,7 +275,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 color: Colors.white,
                               ),
                             ),
-                            onPressed: phone_no.length == 10
+                            onPressed: phone_no.length == 10 &&
+                                    _isChecked == true
                                 ? () async {
                                     print('i ma working');
                                     print(phone.length);
