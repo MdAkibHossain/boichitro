@@ -1,7 +1,7 @@
 class AppConstants {
   static const String APP_NAME = 'Boichitro';
   //static const String BASE_URL = 'http://test.boichitro.com.bd/api/v1/archive/slider-image-list/';
-  static const String BASE_URL = 'https://boichitro.com.bd/';
+  static const String BASE_URL = 'https://boichitro.com.bd';
   static const String REFRESH_TOKEN =
       "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoyNDk1Nzk0NTg0LCJqdGkiOiJjZjVkMGUzZjg2YTU0NGM3ODczZmExNjUxYzMwOWE1MyIsInVzZXJfaWQiOjI4fQ.TlMcVGiu7W_ObmR5kY-lReV4rFa2IJd3uHZI8lCXRBY";
   static const String SOCIALMEDIA_LOGIN = '/api/v1/socialmedia/login/';

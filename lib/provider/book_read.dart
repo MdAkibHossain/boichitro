@@ -41,7 +41,7 @@ class BookReadtModel with ChangeNotifier {
       // var url = Uri.parse(
       //     'https://dapi.counslink.com/api/v1/archive/book-content/$book_id/300/');
       var url = Uri.parse(
-          '${AppConstants.BASE_URL}${AppConstants.BOOK_CONTENT}/$book_id/190/');
+          '${AppConstants.BASE_URL}${AppConstants.BOOK_CONTENT}$book_id/190/');
       http.Response response = await http.get(url, headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -140,7 +140,7 @@ class BookReadtModel with ChangeNotifier {
       // var url = Uri.parse(
       //     'https://dapi.counslink.com/api/v1/archive/audio-book/$book_id');
       var url = Uri.parse(
-          '${AppConstants.BASE_URL}${AppConstants.AUDIO_BOOK}book_id');
+          '${AppConstants.BASE_URL}${AppConstants.AUDIO_BOOK}$book_id');
       http.Response response = await http.get(url, headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
