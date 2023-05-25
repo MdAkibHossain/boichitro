@@ -8,6 +8,7 @@ import 'package:dhanshirisapp/provider/favourit_list.dart';
 import 'package:dhanshirisapp/provider/subcription.dart';
 import 'package:dhanshirisapp/provider/theme_provider.dart';
 import 'package:dhanshirisapp/screen/book_api_call.dart';
+import 'package:dhanshirisapp/screen/music_player/music_player.dart';
 import 'package:dhanshirisapp/services/secure_storage_service.dart';
 import 'package:dhanshirisapp/widget/carosel_image_slider.dart';
 import 'package:dhanshirisapp/widget/page_manager.dart';
@@ -254,21 +255,23 @@ class _BookDetailsState extends State<AudioBookDetails> {
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(10)),
                 child: Center(
-                    child: WebView(
-                  initialUrl: widget.recentlist.description,
+                  child: MusicPlayer(),
+                  //     WebView(
+                  //   initialUrl: widget.recentlist.description,
 
-                  // initialUrl:
-                  //     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1216818949%3Fsecret_token%3Ds-UuOzIxSiZiw&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true',
-                  javascriptMode: JavascriptMode.unrestricted,
-                  onWebViewCreated: (WebViewController webViewController) {},
-                  onPageStarted: (String url) {
-                    print('Page started loading: $url');
-                  },
-                  onPageFinished: (String url) {
-                    print('Page finished loading: $url');
-                  },
-                  gestureNavigationEnabled: true,
-                )),
+                  //   // initialUrl:
+                  //   //     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1216818949%3Fsecret_token%3Ds-UuOzIxSiZiw&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true',
+                  //   javascriptMode: JavascriptMode.unrestricted,
+                  //   onWebViewCreated: (WebViewController webViewController) {},
+                  //   onPageStarted: (String url) {
+                  //     print('Page started loading: $url');
+                  //   },
+                  //   onPageFinished: (String url) {
+                  //     print('Page finished loading: $url');
+                  //   },
+                  //   gestureNavigationEnabled: true,
+                  // )
+                ),
               )
             ],
           ),
