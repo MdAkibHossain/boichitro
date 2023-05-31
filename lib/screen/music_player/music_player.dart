@@ -4,6 +4,10 @@ import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
 
 class MusicPlayer extends StatefulWidget {
+  final String audioUrl;
+
+  MusicPlayer(this.audioUrl);
+
   @override
   State<MusicPlayer> createState() => _MusicPlayerState();
 }
@@ -13,11 +17,11 @@ class _MusicPlayerState extends State<MusicPlayer> {
   bool isPlaying = false;
   Duration duration = Duration.zero;
   Duration position = Duration.zero;
-  String url = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3';
+  // String url = '';
   @override
   void initState() {
     super.initState();
-    setAudio();
+    // setAudio();
     // Listen to states:playing,paused,stopped
     audioPlayer.onPlayerStateChanged.listen((event) {
       setState(() {
@@ -38,12 +42,12 @@ class _MusicPlayerState extends State<MusicPlayer> {
     });
   }
 
-  Future setAudio() async {
-    audioPlayer.setReleaseMode(ReleaseMode.LOOP);
-    String url =
-        'https://image.shutterstock.com/image-illustration/3d-illustration-musical-notes-signs-260nw-761313844.jpg';
-    audioPlayer.setUrl(url);
-  }
+  // Future setAudio() async {
+  //   audioPlayer.setReleaseMode(ReleaseMode.LOOP);
+  //   String url =
+  //       'https://image.shutterstock.com/image-illustration/3d-illustration-musical-notes-signs-260nw-761313844.jpg';
+  //   audioPlayer.setUrl(url);
+  // }
 
   @override
   void dispose() {
@@ -58,36 +62,36 @@ class _MusicPlayerState extends State<MusicPlayer> {
       body: SingleChildScrollView(
           child: Column(
         children: [
-          SizedBox(
-            height: 10.0.h,
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: Center(
-              child: Image(
-                image: NetworkImage(
-                  'https://image.shutterstock.com/image-illustration/3d-illustration-musical-notes-signs-260nw-761313844.jpg',
-                ),
-                width: 80.0.w,
-                height: 35.0.h,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 2.0.h,
-          ),
-          Text(
-            'Book name ',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(
-            height: 2.0.h,
-          ),
-          Text(
-            'writter name',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
+          // SizedBox(
+          //   height: 10.0.h,
+          // ),
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(50),
+          //   child: Center(
+          //     child: Image(
+          //       image: NetworkImage(
+          //         'https://image.shutterstock.com/image-illustration/3d-illustration-musical-notes-signs-260nw-761313844.jpg',
+          //       ),
+          //       width: 80.0.w,
+          //       height: 35.0.h,
+          //       fit: BoxFit.cover,
+          //     ),
+          //   ),
+          // ),
+          // SizedBox(
+          //   height: 2.0.h,
+          // ),
+          // Text(
+          //   'Book name ',
+          //   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          // ),
+          // SizedBox(
+          //   height: 2.0.h,
+          // ),
+          // Text(
+          //   'writter name',
+          //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          // ),
           Padding(
             padding: EdgeInsets.only(left: 5.0.w, right: 5.0.w),
             child: Slider(
@@ -117,7 +121,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
                   if (isPlaying) {
                     await audioPlayer.pause();
                   } else {
-                    await audioPlayer.play(url);
+                    await audioPlayer.play(widget.audioUrl);
                   }
                 },
               )),
