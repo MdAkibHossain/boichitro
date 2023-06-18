@@ -8,6 +8,8 @@ abstract class LocaleKeys {
   static const recent = "recent";
   static const ign = "IGN";
   static const ign_details = "IGN Details";
+  static const somogro = "Somogro";
+  static const somogro_details = "Somogro Details";
   static const mostpopular = "mostpopular";
   static const categories = "categories";
   static const audiobook = "audiobook";

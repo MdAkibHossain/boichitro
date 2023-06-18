@@ -1,36 +1,38 @@
+import 'package:dhanshirisapp/screen/Deshboard.dart/widget/titlename_withbutton.dart';
+import 'package:dhanshirisapp/screen/book_categories_list/book_categorires_list.dart';
+import 'package:dhanshirisapp/screen/book_screen/book_cart.dart';
+import 'package:dhanshirisapp/translations/locale_keys.g.dart';
+import 'package:dhanshirisapp/widget/no_data_available.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../provider/deshboard.dart';
-import '../../../../translations/locale_keys.g.dart';
-import '../../../../widget/no_data_available.dart';
 import '../../../../widget/shimmer.dart';
-import '../../../book_categories_list/book_categorires_list.dart';
-import '../../../book_screen/book_cart.dart';
-import '../titlename_withbutton.dart';
 
-class PopularBookWidget extends StatefulWidget { 
-  const PopularBookWidget({Key? key}) : super(key: key);
+class SomogroBook extends StatefulWidget {
+  const SomogroBook({super.key});
 
   @override
-  State<PopularBookWidget> createState() => _PopularBookWidgetState();
+  State<SomogroBook> createState() => _SomogroBookState();
 }
 
-class _PopularBookWidgetState extends State<PopularBookWidget> {
+class _SomogroBookState extends State<SomogroBook> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         TitleNameWithButton(
-          title: LocaleKeys.mostpopular.tr(),
+          title: LocaleKeys.somogro.tr(),
           ontap: () {
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => BooksCategoriesList(
-                          category: 'Populor',
+                          category: 'Somogro',
                           search: '',
                           sort_name: "বইয়ের নাম",
                         )));
@@ -45,18 +47,18 @@ class _PopularBookWidgetState extends State<PopularBookWidget> {
           child: Consumer<CategoryProvider>(
             child: BookCartShimmer(),
             builder: (context, modal, child) {
-              return modal.isLoadingpopular
+              return modal.isLoadingAudioBookInfo
                   ? child as Widget
-                  : modal.popularBooks!.length == 0
+                  : modal.somogro!.length == 0
                       ? NodataAvailableClass('No Book Available', 25.0.h)
                       : ListView.builder(
                           shrinkWrap: false,
                           scrollDirection: Axis.horizontal,
-                          itemCount: modal.popularBooks!.length,
+                          itemCount: modal.somogro!.length,
                           itemBuilder: (context, index) {
-                            final bookdetails = modal.popularBooks![index];
+                            final somogrodetails = modal.somogro![index];
                             return BookCart(
-                              bookdetails: bookdetails,
+                              bookdetails: somogrodetails,
                             );
                           });
             },
@@ -64,5 +66,6 @@ class _PopularBookWidgetState extends State<PopularBookWidget> {
         ),
       ],
     );
+    ;
   }
 }
