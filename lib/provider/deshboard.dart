@@ -246,7 +246,7 @@ class CategoryProvider with ChangeNotifier {
     print('----------SSSSSSSSSOOOOOOOOMMMMOOOOGGGRRRRROOOOOOO----------');
     print(token);
     try {
-      var url = Uri.parse('mm');
+      var url = Uri.parse('https://boichitro.com.bd/api/v1/archive/somogro/');
       http.Response response = await http.get(url, headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -255,14 +255,11 @@ class CategoryProvider with ChangeNotifier {
       List<SomogroInfo> _somogroTemplist = [];
       Map<String, dynamic> responseData =
           jsonDecode((utf8.decode(response.bodyBytes)));
-
+      print('-------------------SSSSSSSSSSSSSSSSSSSSSSSSSSSS');
       print(responseData);
-      responseData['somogro'].forEach((dynamic data) {
+      responseData['results'].forEach((dynamic data) {
         final SomogroInfo _somogro = SomogroInfo.fromJson(data);
-        print(
-            '-------------------jjjjjjjjjjjjjjjjjjjjjnnnnnnnnjnjnnjnnnnjjnjnjx');
-
-        print(_somogro.description);
+        print(_somogro.cover_image);
         _somogroTemplist.add(_somogro);
       });
       _somogro = _somogroTemplist;

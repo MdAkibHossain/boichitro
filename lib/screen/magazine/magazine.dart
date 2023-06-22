@@ -30,14 +30,14 @@ class _MagazineWidgetState extends State<MagazineWidget> {
         TitleNameWithButton(
           title: LocaleKeys.magazine.tr(),
           ontap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => BooksCategoriesList(
-                          category: 'Magazine',
-                          search: '',
-                          sort_name: "বইয়ের নাম",
-                        )));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => BooksCategoriesList(
+            //               category: 'Magazine',
+            //               search: '',
+            //               sort_name: "বইয়ের নাম",
+            //             )));
           },
         ),
 

@@ -3,7 +3,7 @@ import 'package:dhanshirisapp/constants/app_constants.dart';
 import 'package:dhanshirisapp/provider/deshboard.dart';
 import 'package:dhanshirisapp/provider/subcription.dart';
 import 'package:dhanshirisapp/provider/theme_provider.dart';
-import 'package:dhanshirisapp/screen/Deshboard.dart/widget/book_categories/somogro_books_widget.dart';
+import 'package:dhanshirisapp/screen/somogro/somogro_books_widget.dart';
 import 'package:dhanshirisapp/screen/ign/ign.dart';
 import 'package:dhanshirisapp/screen/magazine/magazine.dart';
 import 'package:dhanshirisapp/screen/Deshboard.dart/widget/search_widget.dart';
@@ -120,6 +120,7 @@ class _DashboardState extends State<Dashboard> {
         Provider.of<SubcriptionModel>(context, listen: false);
     categoryProvider.fetchPreviewBooksImage(token);
     categoryProvider.fetchIGN(token);
+    categoryProvider.fetchSomogro(token);
     categoryProvider.fetchmagazine(token);
     categoryProvider.fetcharecent(token);
     categoryProvider.fetchapopular(token);
@@ -145,6 +146,7 @@ class _DashboardState extends State<Dashboard> {
     categoryProvider.fetchPreviewBooksImage(token);
     categoryProvider.fetcharecent(token);
     categoryProvider.fetchIGN(token);
+    categoryProvider.fetchSomogro(token);
     categoryProvider.fetchmagazine(token);
     categoryProvider.fetchapopular(token);
     categoryProvider.fetchAudiobook(token);

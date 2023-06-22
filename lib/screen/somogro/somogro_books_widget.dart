@@ -1,6 +1,7 @@
 import 'package:dhanshirisapp/screen/Deshboard.dart/widget/titlename_withbutton.dart';
 import 'package:dhanshirisapp/screen/book_categories_list/book_categorires_list.dart';
 import 'package:dhanshirisapp/screen/book_screen/book_cart.dart';
+import 'package:dhanshirisapp/screen/somogro/somogro_book_cart.dart';
 import 'package:dhanshirisapp/translations/locale_keys.g.dart';
 import 'package:dhanshirisapp/widget/no_data_available.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -10,8 +11,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../provider/deshboard.dart';
-import '../../../../widget/shimmer.dart';
+import '../../provider/deshboard.dart';
+import '../../widget/shimmer.dart';
 
 class SomogroBook extends StatefulWidget {
   const SomogroBook({super.key});
@@ -28,14 +29,14 @@ class _SomogroBookState extends State<SomogroBook> {
         TitleNameWithButton(
           title: LocaleKeys.somogro.tr(),
           ontap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => BooksCategoriesList(
-                          category: 'Somogro',
-                          search: '',
-                          sort_name: "বইয়ের নাম",
-                        )));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => BooksCategoriesList(
+            //               category: 'Somogro',
+            //               search: '',
+            //               sort_name: "বইয়ের নাম",
+            //             )));
           },
         ),
 
@@ -57,7 +58,7 @@ class _SomogroBookState extends State<SomogroBook> {
                           itemCount: modal.somogro!.length,
                           itemBuilder: (context, index) {
                             final somogrodetails = modal.somogro![index];
-                            return BookCart(
+                            return SomogroBookCart(
                               bookdetails: somogrodetails,
                             );
                           });

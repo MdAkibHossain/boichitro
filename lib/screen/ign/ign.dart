@@ -31,14 +31,14 @@ class _IGNWidgetState extends State<IGNWidget> {
         TitleNameWithButton(
           title: LocaleKeys.ign.tr(),
           ontap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => BooksCategoriesList(
-                          category: 'Magazine',
-                          search: '',
-                          sort_name: "বইয়ের নাম",
-                        )));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => BooksCategoriesList(
+            //               category: 'Magazine',
+            //               search: '',
+            //               sort_name: "বইয়ের নাম",
+            //             )));
           },
         ),
 
