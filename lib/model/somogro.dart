@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 
 class SomogroInfo {
-  int? pk;
+  int? id;
   int? rating;
   String? slug;
   String? keywords;
-  String? bookname;
+  String? bookname; 
   String? cover_image;
   String? description;
   String? edition;
   String? cover_note;
   String? author;
   String? publisher;
+
   SomogroInfo({
-    @required this.pk,
+    @required this.id,
     @required this.rating,
     @required this.slug,
     @required this.keywords,
@@ -28,7 +29,7 @@ class SomogroInfo {
 
   factory SomogroInfo.fromJson(Map<String, dynamic> map) {
     return SomogroInfo(
-      pk: map['id'],
+      id: map['id'],
       slug: map['slug'],
       bookname: map['shomgro_bangla_names'],
       keywords: map['keywords'],

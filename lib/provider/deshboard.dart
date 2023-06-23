@@ -42,6 +42,7 @@ class CategoryProvider with ChangeNotifier {
   bool isLoadingBookInfo = true;
   bool isLoadingBookPreview = true;
   bool isLoadingAudioBookInfo = true;
+  bool isLoadingSomogro = true;
   bool isLoadingpopular = true;
 
   // -----fetch all category form api--------
@@ -223,7 +224,7 @@ class CategoryProvider with ChangeNotifier {
         final MagazineInfo _magazine = MagazineInfo.fromJson(data);
         print('mmmmmmmmmmmamamamammmamamamamaaamamammam');
 
-        print(_magazine.description);
+        print(_magazine.id);
         _magazineTemplist.add(_magazine);
       });
       _magazine = _magazineTemplist;
@@ -241,9 +242,9 @@ class CategoryProvider with ChangeNotifier {
   //---------------Somogro ---------------
   Future<dynamic> fetchSomogro(token) async {
     String message = '';
-    isLoadingBookInfo = true;
+    isLoadingSomogro = true;
     notifyListeners();
-    print('----------SSSSSSSSSOOOOOOOOMMMMOOOOGGGRRRRROOOOOOO----------');
+    print('----------token----------');
     print(token);
     try {
       var url = Uri.parse('https://boichitro.com.bd/api/v1/archive/somogro/');
@@ -255,21 +256,23 @@ class CategoryProvider with ChangeNotifier {
       List<SomogroInfo> _somogroTemplist = [];
       Map<String, dynamic> responseData =
           jsonDecode((utf8.decode(response.bodyBytes)));
-      print('-------------------SSSSSSSSSSSSSSSSSSSSSSSSSSSS');
+      print('SSSSSSSOOOOOOOOOOOOOOOOOOOO___________');
+
       print(responseData);
       responseData['results'].forEach((dynamic data) {
         final SomogroInfo _somogro = SomogroInfo.fromJson(data);
-        print(_somogro.cover_image);
+        print('SSSSSSSSOOOOOOMMMMMMMMOOOOOOOSS');
+        print(_somogro.id);
         _somogroTemplist.add(_somogro);
       });
+      print('SSSSSSSSOOOOOOMMMMMMMMOOOOOOOSS');
       _somogro = _somogroTemplist;
-      isLoadingAudioBookInfo = false;
-
+      isLoadingSomogro = false;
       notifyListeners();
     } catch (error) {
       //turn off loader
       message = 'failed';
-      isLoadingAudioBookInfo = false;
+      isLoadingSomogro = false;
       notifyListeners();
     }
     return {'message': message};

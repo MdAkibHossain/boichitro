@@ -48,7 +48,7 @@ class _SomogroBookState extends State<SomogroBook> {
           child: Consumer<CategoryProvider>(
             child: BookCartShimmer(),
             builder: (context, modal, child) {
-              return modal.isLoadingAudioBookInfo
+              return modal.isLoadingSomogro
                   ? child as Widget
                   : modal.somogro!.length == 0
                       ? NodataAvailableClass('No Book Available', 25.0.h)
