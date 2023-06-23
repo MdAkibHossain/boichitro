@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class SomogroInfo {
   int? id;
-  int? rating;
+  String? rating;
   String? slug;
   String? keywords;
-  String? bookname; 
+  String? bookname;
   String? cover_image;
   String? description;
   String? edition;
