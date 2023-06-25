@@ -17,6 +17,8 @@ class Bookreadapi {
 class BookReadtModel with ChangeNotifier {
   List<Bookreadapi>? _readbook = [];
   List<Bookreadapi>? get BookPage => _readbook;
+  List<Bookreadapi>? _readsomogro = [];
+  List<Bookreadapi>? get SomogroPage => _readsomogro;
   List<BookRequestModel> _bookrequest = [];
   List<BookRequestModel> get bookrequested => _bookrequest;
 
@@ -73,6 +75,67 @@ class BookReadtModel with ChangeNotifier {
           _dataList.add(_product);
         });
         _readbook = _dataList;
+        isloadingmodel = false;
+        notifyListeners();
+      } else {
+        mapResponse1 = "null";
+        isloadingmodel = false;
+        notifyListeners();
+      }
+    } catch (e) {
+      isloadingmodel = false;
+      notifyListeners();
+      print(e);
+    }
+    return {
+      'book_details': mapResponse1,
+    };
+  }
+
+  // ------------------Somogro Read Apiiii --------------
+
+  Future<Map<String, dynamic>?> somogroreadapicall(token, String slug) async {
+    isloadingmodel = true;
+    String? mapResponse1 = "null";
+    // String? pdf_link = "null";
+    notifyListeners();
+    try {
+      _readbook = [];
+      // var url = Uri.parse(
+      //     'https://dapi.counslink.com/api/v1/archive/book-content/$book_id/300/');
+      var url = Uri.parse(
+          '${'https://boichitro.com.bd/api/v1/archive/somogro/'}$slug/');
+      http.Response response = await http.get(url, headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Token $token',
+      });
+      print('------------------');
+      print(response.body);
+      print('------------------');
+
+      List<Bookreadapi> _dataList = [];
+      if (response.statusCode == 200) {
+        mapResponse1 = jsonDecode((utf8.decode(response.bodyBytes)));
+        print(mapResponse1.runtimeType);
+        String string1 =
+            mapResponse1!.replaceAll(" ", " ").replaceAll("\n", " ");
+        print("bbbbbbbbbbbbbbbbbbbbb");
+        print(string1);
+        developer.log(string1);
+        print("ccccccccccccccccccccc");
+        //Map<String, dynamic>
+        List<dynamic> mapResponse = JsonDecoder().convert(string1);
+        // print("ccccccccccccccccccccccc");
+        // // print(response.body);
+
+        // List<dynamic> _fatchdata = json.decode(response.body);
+        mapResponse.forEach((dynamic datalist) {
+          final Bookreadapi _product = Bookreadapi(page: datalist['page']);
+          //  print(_product.page);
+          _dataList.add(_product);
+        });
+        _readsomogro = _dataList;
         isloadingmodel = false;
         notifyListeners();
       } else {

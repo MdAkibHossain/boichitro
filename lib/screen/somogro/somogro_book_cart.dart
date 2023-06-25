@@ -6,6 +6,8 @@ import 'package:dhanshirisapp/provider/auth.dart';
 import 'package:dhanshirisapp/provider/theme_provider.dart';
 import 'package:dhanshirisapp/screen/book_api_call.dart';
 import 'package:dhanshirisapp/screen/book_screen/book_details.dart';
+import 'package:dhanshirisapp/screen/somogro/somogro_book_api_call.dart';
+import 'package:dhanshirisapp/screen/somogro/somogro_details.dart';
 import 'package:dhanshirisapp/screen/user/user_profile_edit.dart';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -50,7 +52,7 @@ class _SomogroBookCartState extends State<SomogroBookCart> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => BookDetails(
+                builder: (context) => SomogroBookDetails(
                       widget.bookdetails,
                       widget.bookdetails.cover_image.toString(),
                     )));
@@ -219,13 +221,13 @@ class _SomogroBookCartState extends State<SomogroBookCart> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => BookApiCall(
-                                                book_id: widget.bookdetails.pk,
+                                          builder: (context) => SomogroApiCall(
+                                            pk: widget.bookdetails.pk,
+                                                book_slug:
+                                                    widget.bookdetails.slug,
                                                 book_name: widget
                                                     .bookdetails.bookname
                                                     .toString(),
-                                                is_pdf:
-                                                    widget.bookdetails.is_pdf,
                                               )));
                                 } else {
                                   Navigator.push(
@@ -234,7 +236,7 @@ class _SomogroBookCartState extends State<SomogroBookCart> {
                                           builder: (context) => UserProfileEdit(
                                                 profiledata: authProvider,
                                                 checkdata: 1,
-                                                bookid: widget.bookdetails.pk,
+                                                bookid: widget.bookdetails.slug,
                                                 bookname: widget
                                                     .bookdetails.bookname
                                                     .toString(),
@@ -305,13 +307,12 @@ class _SomogroBookCartState extends State<SomogroBookCart> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => BookApiCall(
-                                                book_id: widget.bookdetails.pk,
+                                          builder: (context) => SomogroApiCall(
+                                                pk: widget.bookdetails.pk,
+                                                book_slug: widget.bookdetails.pk,
                                                 book_name: widget
                                                     .bookdetails.bookname
                                                     .toString(),
-                                                is_pdf:
-                                                    widget.bookdetails.is_pdf,
                                               )));
                                 } else {
                                   Navigator.push(
