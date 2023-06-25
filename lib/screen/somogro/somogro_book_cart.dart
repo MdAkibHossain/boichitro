@@ -222,7 +222,7 @@ class _SomogroBookCartState extends State<SomogroBookCart> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => SomogroApiCall(
-                                            pk: widget.bookdetails.pk,
+                                                pk: widget.bookdetails.pk,
                                                 book_slug:
                                                     widget.bookdetails.slug,
                                                 book_name: widget
@@ -309,7 +309,8 @@ class _SomogroBookCartState extends State<SomogroBookCart> {
                                       MaterialPageRoute(
                                           builder: (context) => SomogroApiCall(
                                                 pk: widget.bookdetails.pk,
-                                                book_slug: widget.bookdetails.pk,
+                                                book_slug:
+                                                    widget.bookdetails.slug,
                                                 book_name: widget
                                                     .bookdetails.bookname
                                                     .toString(),

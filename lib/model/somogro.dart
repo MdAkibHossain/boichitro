@@ -12,11 +12,12 @@ class SomogroInfo {
   String? cover_note;
   String? author;
   String? publisher;
-  bool? is_paid = false;
-  String? isbn = '009999';
+  bool? is_paid;
+  String? isbn;
 
-  
   SomogroInfo({
+    @required this.is_paid,
+    @required this.isbn,
     @required this.pk,
     @required this.rating,
     @required this.slug,
@@ -32,6 +33,8 @@ class SomogroInfo {
 
   factory SomogroInfo.fromJson(Map<String, dynamic> map) {
     return SomogroInfo(
+      isbn: map['isbn'],
+      is_paid: map['is_paid'],
       pk: map['id'],
       slug: map['slug'],
       bookname: map['shomgro_bangla_names'],

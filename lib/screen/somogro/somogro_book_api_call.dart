@@ -40,22 +40,22 @@ class _SomogroApiCallState extends State<SomogroApiCall> {
   late List<Note> notes;
   Note? notesdata;
   String? book_details;
-  
+
   var pk;
   @override
   void didChangeDependencies() async {
     var token = await SecureStorageService().readValue(key: AUTH_TOKEN_KEY);
-    print(token);
+    // print(token);
     BookReadtModel bookReadtModel =
         Provider.of<BookReadtModel>(context, listen: false);
-    HighlightProvider highlightProvider =
-        Provider.of<HighlightProvider>(context, listen: false);
-    highlightProvider.clean();
-    print('----------------book_id--------------');
-    print(widget.book_slug);
-    Map<String, dynamic>? data =
-        await bookReadtModel.somogroreadapicall(token, widget.book_slug!);
-    book_details = data!['book_details'];
+    // HighlightProvider highlightProvider =
+    //     Provider.of<HighlightProvider>(context, listen: false);
+    // highlightProvider.clean();
+    // print('----------------book_id--------------');
+    // print(widget.book_name);
+    // Map<String, dynamic>? data =
+    await bookReadtModel.somogroreadapicall(token, widget.book_slug!);
+    // book_details = data!['shomgro_part'];
     super.didChangeDependencies();
   }
 

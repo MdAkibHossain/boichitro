@@ -262,10 +262,9 @@ class CategoryProvider with ChangeNotifier {
       responseData['results'].forEach((dynamic data) {
         final SomogroInfo _somogro = SomogroInfo.fromJson(data);
         print('SSSSSSSSOOOOOOMMMMMMMMOOOOOOOSS');
-        print(_somogro.pk);
+        print(_somogro.cover_image);
         _somogroTemplist.add(_somogro);
       });
-      print('SSSSSSSSOOOOOOMMMMMMMMOOOOOOOSS');
       _somogro = _somogroTemplist;
       isLoadingSomogro = false;
       notifyListeners();
