@@ -1,6 +1,7 @@
 import 'package:dhanshirisapp/constants/app_constants.dart';
 import 'package:dhanshirisapp/db/history_database.dart';
 import 'package:dhanshirisapp/db/history_data.dart';
+import 'package:dhanshirisapp/model/shomogro_books_read.dart';
 import 'package:dhanshirisapp/provider/book_read.dart';
 import 'package:dhanshirisapp/provider/highlight.dart';
 import 'package:dhanshirisapp/provider/order.dart';
@@ -8,6 +9,7 @@ import 'package:dhanshirisapp/screen/book_read_page/book_read_page.dart';
 import 'package:dhanshirisapp/screen/book_read_page_details.dart';
 import 'package:dhanshirisapp/screen/book_read_screen.dart';
 import 'package:dhanshirisapp/screen/magazine/magazineread.dart';
+import 'package:dhanshirisapp/screen/somogro/read_somogro_ui.dart';
 import 'package:dhanshirisapp/screen/somogro/somogro_read_page.dart';
 import 'package:dhanshirisapp/screen/wishlist/pdf_book_read.dart';
 import 'package:dhanshirisapp/services/secure_storage_service.dart';
@@ -37,25 +39,25 @@ class SomogroApiCall extends StatefulWidget {
 }
 
 class _SomogroApiCallState extends State<SomogroApiCall> {
-  late List<Note> notes;
-  Note? notesdata;
+  // late List<Note> notes;
+  // Note? notesdata;
   String? book_details;
-
-  var pk;
   @override
   void didChangeDependencies() async {
     var token = await SecureStorageService().readValue(key: AUTH_TOKEN_KEY);
     // print(token);
     BookReadtModel bookReadtModel =
         Provider.of<BookReadtModel>(context, listen: false);
-    // HighlightProvider highlightProvider =
-    //     Provider.of<HighlightProvider>(context, listen: false);
-    // highlightProvider.clean();
+    HighlightProvider highlightProvider =
+        Provider.of<HighlightProvider>(context, listen: false);
+    highlightProvider.clean();
     // print('----------------book_id--------------');
     // print(widget.book_name);
     // Map<String, dynamic>? data =
     await bookReadtModel.somogroreadapicall(token, widget.book_slug!);
-    // book_details = data!['shomgro_part'];
+    // book_details = data!['book_details'];
+    // print('ZZZZZZZZZZZZZZZZZZZZZZZZZSS');
+    // print(data);
     super.didChangeDependencies();
   }
 
@@ -71,14 +73,19 @@ class _SomogroApiCallState extends State<SomogroApiCall> {
                     ? child as Widget
                     : model.SomogroPage!.length == 0
                         ? NodataAvailableClass('Book is Empty !', 80.0.h)
-                        : SomogroReadPage(
-                            pk: pk,
-                            book_details: book_details,
-                            book_id: widget.book_slug,
-                            book_name: widget.book_name,
-                            bookpagemodel: model,
-                            orther: order,
-                          );
+                        : ReadSUI(
+                            somogroMap: model.SomogroPage,
+                            bookcount: model.SomogroPage!.length);
+
+                // SomogroReadPage(
+                //     pk: widget.pk,
+                //     book_details: book_details,
+                //     book_id: widget.book_slug,
+                //     book_name: widget.book_name,
+                //     bookpagemodel: model,
+                //     orther: order,
+                //   )
+                // ;
               })),
     );
   }

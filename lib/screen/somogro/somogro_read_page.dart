@@ -9,6 +9,7 @@ import 'package:dhanshirisapp/screen/book_read_page/widget/book_read_page_card.d
 import 'package:dhanshirisapp/screen/book_read_page/widget/bottom_options_widget.dart';
 import 'package:dhanshirisapp/screen/book_read_page/widget/font_style_widget.dart';
 import 'package:dhanshirisapp/screen/book_read_page/widget/landscapes_mode.dart';
+import 'package:dhanshirisapp/screen/somogro/somogro_drawer.dart';
 import 'package:dhanshirisapp/translations/locale_keys.g.dart';
 import 'package:dhanshirisapp/widget/book_read_selectMode.dart';
 import 'package:dhanshirisapp/widget/debouncer.dart';
@@ -149,7 +150,7 @@ class _BookReadScreenState extends State<SomogroReadPage>
         Provider.of<HighlightProvider>(context, listen: false);
     return Scaffold(
       key: _scaffoldKey,
-      drawer: AppDrawerCustomer(),
+      drawer: SomogroDrawer(widget.bookpagemodel.SomogroPage),
       body: Container(
         child: OrientationBuilder(builder: (context, orientation) {
           if (MediaQuery.of(context).orientation == Orientation.portrait) {

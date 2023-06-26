@@ -62,7 +62,7 @@ class BookReadtModel with ChangeNotifier {
             mapResponse1!.replaceAll(" ", " ").replaceAll("\n", " ");
         print("bbbbbbbbbbbbbbbbbbbbb");
         print(string1);
-        developer.log(string1);
+        // developer.log(string1);
         print("ccccccccccccccccccccc");
         //Map<String, dynamic>
         List<dynamic> mapResponse = JsonDecoder().convert(string1);
@@ -97,7 +97,7 @@ class BookReadtModel with ChangeNotifier {
 // https://boichitro.com.bd/api/v1/archive/somogro/kishor-uponnash-shomogro-3
   Future<Map<String, dynamic>?> somogroreadapicall(token, String slug) async {
     isloadingmodel = true;
-    String? mapResponse1 = "null";
+    List<SomogroBooksRead>? mapResponse1;
     // String? pdf_link = "null";
     notifyListeners();
     try {
@@ -124,6 +124,7 @@ class BookReadtModel with ChangeNotifier {
         _somogroTempList.add(_somogro);
       });
       _readsomogro = _somogroTempList;
+      mapResponse1 = _somogroTempList;
       isloadingmodel = false;
       notifyListeners();
     } catch (e) {
