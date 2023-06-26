@@ -9,8 +9,8 @@ import 'package:dhanshirisapp/screen/book_read_page/book_read_page.dart';
 import 'package:dhanshirisapp/screen/book_read_page_details.dart';
 import 'package:dhanshirisapp/screen/book_read_screen.dart';
 import 'package:dhanshirisapp/screen/magazine/magazineread.dart';
-import 'package:dhanshirisapp/screen/somogro/read_somogro_ui.dart';
-import 'package:dhanshirisapp/screen/somogro/somogro_read_page.dart';
+import 'package:dhanshirisapp/screen/somogro/somogro_books_widget.dart';
+import 'package:dhanshirisapp/screen/somogro/somogro_book_reader.dart';
 import 'package:dhanshirisapp/screen/wishlist/pdf_book_read.dart';
 import 'package:dhanshirisapp/services/secure_storage_service.dart';
 import 'package:dhanshirisapp/widget/drower_customer/add_drower_customer.dart';
@@ -73,9 +73,8 @@ class _SomogroApiCallState extends State<SomogroApiCall> {
                     ? child as Widget
                     : model.SomogroPage!.length == 0
                         ? NodataAvailableClass('Book is Empty !', 80.0.h)
-                        : ReadSUI(
-                            somogroMap: model.SomogroPage,
-                            bookcount: model.SomogroPage!.length);
+                        : SomogroReadBook(
+                            model.SomogroPage, model.SomogroPage!.length);
 
                 // SomogroReadPage(
                 //     pk: widget.pk,
