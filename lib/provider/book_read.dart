@@ -104,8 +104,8 @@ class BookReadtModel with ChangeNotifier {
       // _readbook = [];
       // var url = Uri.parse(
       //     'https://dapi.counslink.com/api/v1/archive/book-content/$book_id/300/');
-      var url = Uri.parse(
-          'https://boichitro.com.bd/api/v1/archive/somogro/kishor-uponnash-shomogro-3');
+      var url =
+          Uri.parse('https://boichitro.com.bd/api/v1/archive/somogro/$slug');
       http.Response response = await http.get(url, headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',

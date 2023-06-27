@@ -3,7 +3,6 @@ import 'package:dhanshirisapp/provider/theme_provider.dart';
 import 'package:dhanshirisapp/screen/History/history_page.dart';
 import 'package:dhanshirisapp/screen/about_app.dart';
 import 'package:dhanshirisapp/screen/book_request/book_requested_screen.dart';
-import 'package:dhanshirisapp/screen/somogro/somogro_drawer.dart';
 import 'package:dhanshirisapp/screen/wishlist/my_wishlist.dart';
 import 'package:dhanshirisapp/screen/auth/login_screen.dart';
 import 'package:dhanshirisapp/screen/setting.dart';
@@ -36,15 +35,67 @@ class _SomogroReadBookState extends State<SomogroReadBook> {
   final PageController _pageController = PageController();
 
   int _currentPage = 0;
+  int booknumber = 0;
+
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    final List<String> pages = _splitContentIntoPages(
-        widget.bookdetails![1].content.toString().replaceAll("\n", ""));
+    final List<String> pages = _splitContentIntoPages(widget
+        .bookdetails![booknumber].content
+        .toString()
+        .replaceAll("\n", ""));
 
     return Scaffold(
-      appBar: AppBar(),
-      drawer: SomogroDrawer(),
+      key: _scaffoldKey,
+      appBar: AppBar(
+        backgroundColor: Color(0xffc60e13),
+        title: Text(
+          widget.bookdetails![booknumber].part_name.toString(),
+          style: TextStyle(fontSize: 14.sp),
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            Container(
+              height: 12.h,
+              child: DrawerHeader(
+                child: Text(
+                  'Books Name',
+                  style:
+                      TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500),
+                ),
+                decoration: BoxDecoration(
+                  color: Color(0xffc60e13),
+                ),
+              ),
+            ),
+            Container(
+              height: double.maxFinite,
+              child: ListView.builder(
+                  itemCount: widget.bookcount,
+                  itemBuilder: (context, index) {
+                    final booknames = widget.bookdetails![index].part_name;
+                    return ListTile(
+                      title: Text(booknames.toString()),
+                      onTap: () {
+                        setState(() {
+                          if (_scaffoldKey.currentState!.isDrawerOpen) {
+                            _scaffoldKey.currentState!.openEndDrawer();
+                          } else {
+                            _scaffoldKey.currentState!.openDrawer();
+                          }
+                          booknumber = index;
+                        });
+                      },
+                    );
+                  }),
+            ),
+          ],
+        ),
+      ),
       body: Column(
         children: [
           Expanded(
@@ -78,7 +129,7 @@ class _SomogroReadBookState extends State<SomogroReadBook> {
 
   List<String> _splitContentIntoPages(String content) {
     const int maxCharsPerPage =
-        1050; // Adjust this value to change the page size
+        1150; // Adjust this value to change the page size
 
     List<String> pages = [];
     String currentPage = '';
