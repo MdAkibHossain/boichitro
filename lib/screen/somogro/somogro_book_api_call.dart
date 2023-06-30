@@ -25,14 +25,10 @@ class SomogroApiCall extends StatefulWidget {
   final int? pk;
   final String? book_slug;
   final String? book_name;
-  final bool? is_pdf;
-  //final bool is_pdf;
   SomogroApiCall({
     required this.pk,
     required this.book_slug,
     required this.book_name,
-    this.is_pdf,
-    // required this.is_pdf
   });
   @override
   _SomogroApiCallState createState() => _SomogroApiCallState();

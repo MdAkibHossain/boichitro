@@ -135,7 +135,6 @@ class _SomogroBookDetailsState extends State<SomogroBookDetails> {
                                               book_name: widget
                                                   .recentlist.bookname
                                                   .toString(),
-                                              is_pdf: widget.recentlist.is_pdf,
                                             )));
                               } else {
                                 Navigator.push(
@@ -259,9 +258,6 @@ class _SomogroBookDetailsState extends State<SomogroBookDetails> {
                                                                 .recentlist
                                                                 .bookname
                                                                 .toString(),
-                                                            is_pdf: widget
-                                                                .recentlist
-                                                                .is_pdf,
                                                           )));
                                               // } else {
                                               //   // ReadPdf(magazinePdf: widget.recentlist,);
