@@ -22,7 +22,6 @@ class AppConstants {
   static const String MY_SUBCRIPTION = '/api/v1/subscription/my-subscription/';
   static const String MY_SUBCRIPTION_HISTORY =
       '/api/v1/subscription/my-subscription-history/';
-
   static const String SUBCRIPTION_TYPES =
       '/api/v1/subscription/subscription-types/';
 
