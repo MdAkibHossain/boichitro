@@ -17,6 +17,8 @@
 		<string>en</string>
 		<string>nb</string>
 	</array>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>The application does not use this feature</string>
 	<key>CFBundleName</key>
 	<string>Boichitro</string>
 	<key>CFBundlePackageType</key>
