@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:developer' as developer;
 
+import '../model/audio_listener_split.dart';
+
 class Bookreadapi {
   String? page;
   Bookreadapi({
@@ -20,6 +22,8 @@ class BookReadtModel with ChangeNotifier {
   List<Bookreadapi>? get BookPage => _readbook;
   List<SomogroBooksRead>? _readsomogro = [];
   List<SomogroBooksRead>? get SomogroPage => _readsomogro;
+  List<AudioBooksRead>? _listenaudio = [];
+  List<AudioBooksRead>? get audiopage => _listenaudio;
   List<BookRequestModel> _bookrequest = [];
   List<BookRequestModel> get bookrequested => _bookrequest;
 
@@ -137,6 +141,48 @@ class BookReadtModel with ChangeNotifier {
     };
   }
 
+  // ------------------Audio book --------------
+  Future<Map<String, dynamic>?> audiolistenapicall(token, int id) async {
+    isloadingmodel = true;
+    List<AudioBooksRead>? mapResponse1;
+    // String? pdf_link = "null";
+    notifyListeners();
+    try {
+      // _readbook = [];
+      // var url = Uri.parse(
+      //     'https://dapi.counslink.com/api/v1/archive/book-content/$book_id/300/');
+      var url =
+          Uri.parse('https://boichitro.com.bd/api/v1/archive/audio-book/$id');
+      http.Response response = await http.get(url, headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Token $token',
+      });
+      List<AudioBooksRead> _splitaudioTempList = [];
+      Map<String, dynamic> responseData =
+          jsonDecode((utf8.decode(response.bodyBytes)));
+
+      print(responseData);
+      responseData['audio_book'].forEach((dynamic data) {
+        final AudioBooksRead _audio = AudioBooksRead.fromJson(data);
+        print('-------------------RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR');
+        print(_audio.part);
+        _splitaudioTempList.add(_audio);
+      });
+      _listenaudio = _splitaudioTempList;
+      mapResponse1 = _splitaudioTempList;
+      isloadingmodel = false;
+      notifyListeners();
+    } catch (e) {
+      isloadingmodel = false;
+      notifyListeners();
+      print(e);
+    }
+    return {
+      'book_details': mapResponse1,
+    };
+  }
+
   // ------------------Ign Apiiii --------------
   Future<Map<String, dynamic>?> ignapicall(token, int ign_id) async {
     isloadingmodel = true;
@@ -180,31 +226,31 @@ class BookReadtModel with ChangeNotifier {
   }
 
   // ------------------Audio book --------------
-  Future<Map<String, dynamic>?> audioBookapicall(token, book_id) async {
-    isloadingmodel = true;
-    notifyListeners();
-    try {
-      // var url = Uri.parse(
-      //     'https://dapi.counslink.com/api/v1/archive/audio-book/$book_id');
-      var url = Uri.parse(
-          '${AppConstants.BASE_URL}${AppConstants.AUDIO_BOOK}$book_id');
-      http.Response response = await http.get(url, headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Token $token',
-      });
-      if (response.statusCode == 200) {
-        Map<String, dynamic> mapResponse = JsonDecoder().convert(response.body);
-        audio_book = mapResponse['audio_file'];
-        isloadingmodel = false;
-        notifyListeners();
-      }
-    } catch (e) {
-      isloadingmodel = false;
-      notifyListeners();
-      print(e);
-    }
-  }
+  // Future<Map<String, dynamic>?> audioBookapicall(token, book_id) async {
+  //   isloadingmodel = true;
+  //   notifyListeners();
+  //   try {
+  //     // var url = Uri.parse(
+  //     //     'https://dapi.counslink.com/api/v1/archive/audio-book/$book_id');
+  //     var url = Uri.parse(
+  //         '${AppConstants.BASE_URL}${AppConstants.AUDIO_BOOK}$book_id');
+  //     http.Response response = await http.get(url, headers: {
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json',
+  //       'Authorization': 'Token $token',
+  //     });
+  //     if (response.statusCode == 200) {
+  //       Map<String, dynamic> mapResponse = JsonDecoder().convert(response.body);
+  //       audio_book = mapResponse['audio_file'];
+  //       isloadingmodel = false;
+  //       notifyListeners();
+  //     }
+  //   } catch (e) {
+  //     isloadingmodel = false;
+  //     notifyListeners();
+  //     print(e);
+  //   }
+  // }
 
   // ------------------book request get method --------------
   Future<dynamic> fetchbookrequest(token) async {

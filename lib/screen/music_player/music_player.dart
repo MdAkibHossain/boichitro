@@ -58,8 +58,8 @@ class _MusicPlayerState extends State<MusicPlayer> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
-      body: SingleChildScrollView(
+    return Container(
+      child: SingleChildScrollView(
           child: Column(
         children: [
           // SizedBox(
@@ -113,10 +113,10 @@ class _MusicPlayerState extends State<MusicPlayer> {
                 ]),
           ),
           CircleAvatar(
-              radius: 35,
+              radius: 25,
               child: IconButton(
                 icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
-                iconSize: 50,
+                iconSize: 35,
                 onPressed: () async {
                   if (isPlaying) {
                     await audioPlayer.pause();

@@ -7,6 +7,7 @@ import 'package:dhanshirisapp/provider/deshboard.dart';
 import 'package:dhanshirisapp/provider/favourit_list.dart';
 import 'package:dhanshirisapp/provider/subcription.dart';
 import 'package:dhanshirisapp/provider/theme_provider.dart';
+import 'package:dhanshirisapp/screen/audio/split_audio_player.dart';
 import 'package:dhanshirisapp/screen/book_api_call.dart';
 import 'package:dhanshirisapp/screen/music_player/music_player.dart';
 import 'package:dhanshirisapp/services/secure_storage_service.dart';
@@ -234,7 +235,7 @@ class _BookDetailsState extends State<AudioBookDetails> {
                 height: 2.0.h,
               ),
               Container(
-                  height: 30.0.h,
+                  height: 45.0.h,
                   width: 100.0.w,
                   margin: EdgeInsets.only(left: 05.0.w, right: 05.0.w),
                   child: SingleChildScrollView(
@@ -248,29 +249,31 @@ class _BookDetailsState extends State<AudioBookDetails> {
               SizedBox(
                 height: 2.0.h,
               ),
-              Container(
-                height: 20.0.h,
-                width: 100.0.w,
-                margin: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                child: Center(
-                  child: MusicPlayer(widget.recentlist.audio_file.toString()),
-                  //     WebView(
-                  // initialUrl: widget.recentlist.description,
-
-                  //   // initialUrl:
-                  //   //     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1216818949%3Fsecret_token%3Ds-UuOzIxSiZiw&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true',
-                  //   javascriptMode: JavascriptMode.unrestricted,
-                  //   onWebViewCreated: (WebViewController webViewController) {},
-                  //   onPageStarted: (String url) {
-                  //     print('Page started loading: $url');
-                  //   },
-                  //   onPageFinished: (String url) {
-                  //     print('Page finished loading: $url');
-                  //   },
-                  //   gestureNavigationEnabled: true,
-                  // )
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AudioApiCall(
+                              id: widget.recentlist.id,
+                              book_name: widget.recentlist.bookname)));
+                },
+                child: Container(
+                  height: 5.0.h,
+                  width: 100.0.w,
+                  margin: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
+                  decoration: BoxDecoration(
+                      color: Color(0xffc60e13),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                    child: Text(
+                      'Listen Book',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white),
+                    ),
+                  ),
                 ),
               )
             ],

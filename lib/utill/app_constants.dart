@@ -42,6 +42,6 @@ class AppConstants {
       '/api/v1/subscription/create-subscription/';
   static const String CREATE_BOOK_REQUEST =
       '/api/v1/archive/create-book-request/';
-  static const String AUDIO_BOOKS = '/api/v1/archive/audio-books/';
+  static const String AUDIO_BOOKS = '/api/v1/archive/audio-book/';
   static const String MY_BOOK_REQUESTS = '/api/v1/archive/my-book-requests/';
 }

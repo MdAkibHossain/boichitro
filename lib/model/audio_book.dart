@@ -33,18 +33,18 @@ class AudioBookModel {
 
   factory AudioBookModel.fromJson(Map<String, dynamic> map) {
     return AudioBookModel(
-        id: map['id'],
+        id: map['pk'],
         audio_file: map['audio_file'],
-        short_name: map['book']['short_name'],
-        bookname: map['book']['book_name'],
-        cover_image: map['book']['cover_image'],
-        rating: map['book']['rating'].toString(),
-        description: map['book']['description'],
-        edition: map['book']['edition'],
-        isbn: map['book']['isbn'],
-        author: map['book']['author']['name'],
-        publisher: map['book']['publisher']['name'],
-        is_paid: map['book']['is_paid'],
-        cover_note: map['book']['cover_note']);
+        short_name: map['book_name'],
+        bookname: map['book_name'],
+        cover_image: map['cover_image'],
+        rating: map['rating'].toString(),
+        description: map['description'],
+        edition: map['edition'],
+        isbn: map['isbn'],
+        author: map['author_name'],
+        publisher: map['publisher_name'],
+        is_paid: map['is_paid'],
+        cover_note: map['cover_note']);
   }
 }
