@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:dhanshirisapp/constants/app_constants.dart';
+import 'package:dhanshirisapp/provider/delete_account.dart';
 import 'package:dhanshirisapp/provider/deshboard.dart';
 import 'package:dhanshirisapp/provider/subcription.dart';
 import 'package:dhanshirisapp/provider/theme_provider.dart';
@@ -118,6 +119,8 @@ class _DashboardState extends State<Dashboard> {
         Provider.of<CategoryProvider>(context, listen: false);
     SubcriptionModel subcriptionModel =
         Provider.of<SubcriptionModel>(context, listen: false);
+    DeleteAccountProvider deleteProvider =
+        Provider.of<DeleteAccountProvider>(context, listen: false);
     categoryProvider.fetchPreviewBooksImage(token);
     categoryProvider.fetchIGN(token);
     categoryProvider.fetchSomogro(token);
@@ -141,6 +144,8 @@ class _DashboardState extends State<Dashboard> {
     await favouritebooks.fatchfavouriteList();
     CategoryProvider categoryProvider =
         Provider.of<CategoryProvider>(context, listen: false);
+    DeleteAccountProvider deleteProvider =
+        Provider.of<DeleteAccountProvider>(context, listen: false);
     SubcriptionModel subcriptionModel =
         Provider.of<SubcriptionModel>(context, listen: false);
     categoryProvider.fetchPreviewBooksImage(token);

@@ -118,7 +118,7 @@ class _SettingOfDropDownItemState extends State<SettingOfDropDownItem> {
                         )),
                   ),
                   SizedBox(
-                    width: 30.0.w,
+                    width: 26.0.w,
                   ),
                   Container(
                     // padding: EdgeInsets.only(

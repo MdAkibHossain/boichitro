@@ -33,6 +33,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
+import 'provider/delete_account.dart';
 //import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 // StreamController<bool> isLightTheme = StreamController();
 
@@ -125,6 +127,7 @@ class _BoichitroState extends State<Boichitro> {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider.value(value: SubcriptionModel()),
+          ChangeNotifierProvider.value(value: DeleteAccountProvider()),
           ChangeNotifierProvider.value(value: HighlightProvider()),
           ChangeNotifierProvider.value(value: BookReadtModel()),
           ChangeNotifierProvider.value(value: AuthProvider()),
