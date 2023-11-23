@@ -3,6 +3,7 @@ import 'package:dhanshirisapp/model/shomogro_books_read.dart';
 import 'package:dhanshirisapp/provider/theme_provider.dart';
 import 'package:dhanshirisapp/screen/History/history_page.dart';
 import 'package:dhanshirisapp/screen/about_app.dart';
+import 'package:dhanshirisapp/screen/audio/soundcloud_player.dart';
 import 'package:dhanshirisapp/screen/book_request/book_requested_screen.dart';
 import 'package:dhanshirisapp/screen/music_player/music_player.dart';
 import 'package:dhanshirisapp/screen/wishlist/my_wishlist.dart';
@@ -17,6 +18,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../model/audio_listener_split.dart';
 import '../../screen/about page/aboutpage.dart';
@@ -124,8 +126,32 @@ class _AudioListenerState extends State<AudioListener> {
                                     'Audio Part: ' + (index + 1).toString()),
                               ),
                             ),
-                            MusicPlayer(
-                                widget.bookdetails![index].file.toString()),
+                            // MusicPlayer(
+                            //     widget.bookdetails![index].file.toString(),
+
+                            //     ),
+                            SoundCloudPlayer(),
+                            // Container(
+                            //   height: 40.0.h,
+                            //   width: double.maxFinite,
+                            //   child: WebView(
+                            //     initialUrl:
+                            //         widget.bookdetails![index].url.toString(),
+
+                            //     // initialUrl:
+                            //     //     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1216818949%3Fsecret_token%3Ds-UuOzIxSiZiw&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true',
+                            //     javascriptMode: JavascriptMode.unrestricted,
+                            //     onWebViewCreated:
+                            //         (WebViewController webViewController) {},
+                            //     onPageStarted: (String url) {
+                            //       print('Page started loading: $url');
+                            //     },
+                            //     onPageFinished: (String url) {
+                            //       print('Page finished loading: $url');
+                            //     },
+                            //     gestureNavigationEnabled: true,
+                            //   ),
+                            // )
                           ],
                         ),
                       ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AudioBookModel {
   int? id;
   String? audio_file;
+  String? audio_link;
   String? short_name;
   String? rating;
   String? bookname;
@@ -19,6 +20,7 @@ class AudioBookModel {
     required this.id,
     required this.audio_file,
     required this.short_name,
+    required this.audio_link,
     required this.rating,
     required this.bookname,
     required this.cover_image,
@@ -45,6 +47,7 @@ class AudioBookModel {
         author: map['author_name'],
         publisher: map['publisher_name'],
         is_paid: map['is_paid'],
+        audio_link: map['audi_link'],
         cover_note: map['cover_note']);
   }
 }
