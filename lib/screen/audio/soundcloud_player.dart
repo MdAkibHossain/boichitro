@@ -11,7 +11,7 @@ class _SoundCloudPlayerState extends State<SoundCloudPlayer> {
 
   playSoundCloudAudio() async {
     String soundCloudUrl =
-        'https://soundcloud.com/boichitro/t5nvdxnpqyvb/s-J6UDxKcmkx0?in=boichitro/sets/areak-falgun-zahir-raihan/s-4EbLMOtkPZI&si=ea2b7b9931554e21a16a083c9b781295&utm_source=clipboard&utm_medium=text&utm_campa';
+        'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1722264573%3Fsecret_token%3Ds-4EbLMOtkPZI&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=tru';
     int result = await audioPlayer.play(soundCloudUrl);
     if (result == 1) {
       // success

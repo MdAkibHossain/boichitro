@@ -108,52 +108,46 @@ class _AudioListenerState extends State<AudioListener> {
                     final booknames = widget.bookdetails![index].part;
                     return Padding(
                       padding: EdgeInsets.all(1.0.h),
-                      child: Container(
-                        height: 20.h,
-                        decoration: BoxDecoration(
-                            color: Colors.black12,
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                left: 10.0.w,
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.only(top: 1.0.h),
-                                child: Text(
-                                    'Audio Part: ' + (index + 1).toString()),
-                              ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Padding(
+                          //   padding: EdgeInsets.only(
+                          //     left: 10.0.w,
+                          //   ),
+                          //   child: Padding(
+                          //     padding: EdgeInsets.only(top: 1.0.h),
+                          //     child:
+                          //         Text('Audio Part: ' + (index + 1).toString()),
+                          //   ),
+                          // ),
+                          // MusicPlayer(
+                          //     widget.bookdetails![index].file.toString(),
+
+                          //     ),
+                          // SoundCloudPlayer(),
+                          Container(
+                            height: 80.0.h,
+                            width: double.maxFinite,
+                            child: WebView(
+                              initialUrl:
+                                  widget.bookdetails![index].url.toString(),
+
+                              // initialUrl:
+                              // 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1210938040&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true',
+                              javascriptMode: JavascriptMode.unrestricted,
+                              onWebViewCreated:
+                                  (WebViewController webViewController) {},
+                              onPageStarted: (String url) {
+                                print('Page started loading: $url');
+                              },
+                              onPageFinished: (String url) {
+                                print('Page finished loading: $url');
+                              },
+                              gestureNavigationEnabled: true,
                             ),
-                            // MusicPlayer(
-                            //     widget.bookdetails![index].file.toString(),
-
-                            //     ),
-                            SoundCloudPlayer(),
-                            // Container(
-                            //   height: 40.0.h,
-                            //   width: double.maxFinite,
-                            //   child: WebView(
-                            //     initialUrl:
-                            //         widget.bookdetails![index].url.toString(),
-
-                            //     // initialUrl:
-                            //     //     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1216818949%3Fsecret_token%3Ds-UuOzIxSiZiw&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true',
-                            //     javascriptMode: JavascriptMode.unrestricted,
-                            //     onWebViewCreated:
-                            //         (WebViewController webViewController) {},
-                            //     onPageStarted: (String url) {
-                            //       print('Page started loading: $url');
-                            //     },
-                            //     onPageFinished: (String url) {
-                            //       print('Page finished loading: $url');
-                            //     },
-                            //     gestureNavigationEnabled: true,
-                            //   ),
-                            // )
-                          ],
-                        ),
+                          )
+                        ],
                       ),
                     );
                   }),
