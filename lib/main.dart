@@ -39,8 +39,6 @@ import 'package:sizer/sizer.dart';
 import 'package:http/http.dart' as http;
 import 'provider/delete_account.dart';
 import 'dart:convert';
-//import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-// StreamController<bool> isLightTheme = StreamController();
 
 Future<void> backgroundHandler(RemoteMessage message) async {
   NotificationService.display(message);
@@ -51,13 +49,9 @@ Future<void> backgroundHandler(RemoteMessage message) async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   NotificationService.initialize();
   FirebaseMessaging.instance.getInitialMessage();
-  // FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
-  // FirebaseCrashlytics.instance.crash();
-  //HttpOverrides.global = new MyHttpOverrides();
 
   runApp(
     DevicePreview(
@@ -91,28 +85,26 @@ class Boichitro extends StatefulWidget {
 
 class _BoichitroState extends State<Boichitro> {
   String currentVersion = '';
-  String latestVersion = '2.3.0';
+  String latestVersion = '';
 
   Future<void> getCurrentAppVersion() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     final cv = packageInfo.version;
     setState(() {
       currentVersion = cv;
-      print('cccccccvvvv' + currentVersion);
+      print('current version' + currentVersion);
     });
   }
 
   Future<void> getLatestVersion() async {
-    var apiUrl =
-        Uri.parse('https://boichitro.com.bd/api/v1/archive/app-versions/');
+    var apiUrl = Uri.parse('https://boichitro.com.bd/api/v1/version/android/');
     try {
       var response = await http.get(apiUrl);
-
       if (response.statusCode == 200) {
         var data = json.decode(response.body);
-        print(data);
+        print('server version' + data['version']);
         setState(() {
-          latestVersion = data.toString();
+          latestVersion = data['version'];
         });
       } else {
         throw Exception('Failed to fetch data');
@@ -121,8 +113,7 @@ class _BoichitroState extends State<Boichitro> {
       print('Error: $error');
     }
     setState(() {
-      // currentVersion = cv;
-      print('llllllllvvvv' + latestVersion);
+      print('latest version' + latestVersion);
     });
   }
 
@@ -141,29 +132,10 @@ class _BoichitroState extends State<Boichitro> {
         print(message);
       }
       NotificationService.display(message);
-      // FlutterRingtonePlayer.play(
-      //   android: AndroidSounds.ringtone,
-      //   ios: IosSounds.glass,
-      //   // looping: true, // Android only - API >= 28
-      //   volume: 1, // Android only - API >= 28
-      //   asAlarm: false, // Android only - all APIs
-      // );
     });
-// on app breckgroud
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
       NotificationService.display(message);
-      // FlutterRingtonePlayer.play(
-      //   android: AndroidSounds.ringtone,
-      //   ios: IosSounds.glass,
-      //   // looping: true, // Android only - API >= 28
-      //   volume: 1, // Android only - API >= 28
-      //   asAlarm: false, // Android only - all APIs
-      // );
     });
-// App Backgroud
-
-    // Perform a check for the latest version
-    // checkForUpdate();
   }
 
   @override
@@ -187,22 +159,8 @@ class _BoichitroState extends State<Boichitro> {
             child: currentVersion == latestVersion
                 ? SplashScreen()
                 : UpdateChecker(),
-
-            //child: MusicPlayer(),
-            // child: MainPage(
-            //   title: '',
-            // ),
-            //child: SeletectedText(),
-            // child: BookRequestingScreen(),
-            //child: AboutApp(),
-            // child: SplashScreen(),
-            // child: TextFieldWidget(),'
-            // child: TextAudioFile(),
             builder: (context, model, child) {
               return MaterialApp(
-                // ------device preview test----
-                // locale: DevicePreview.locale(context), // Add the locale here
-                //   builder: DevicePreview.appBuilder,
                 debugShowCheckedModeBanner: false,
                 supportedLocales: context.supportedLocales,
                 localizationsDelegates: context.localizationDelegates,
