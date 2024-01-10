@@ -15,6 +15,7 @@ class FavouriteProduct {
   String? publisher;
   String? book_image_url;
   bool? is_paid;
+  bool? is_pdf;
   FavouriteProduct({
     @required this.pk,
     @required this.short_name,
@@ -28,6 +29,7 @@ class FavouriteProduct {
     @required this.isbn,
     @required this.author,
     @required this.publisher,
+    @required this.is_pdf,
     required this.book_image_url,
     required this.is_paid,
   });
@@ -45,6 +47,7 @@ class FavouriteProduct {
         edition: map['book']['edition'],
         isbn: map['book']['isbn'],
         is_paid: map['book']['is_paid'],
+        is_pdf: map['book']['is_pdf'],
         author: map['book']['author_name'].toString(),
         publisher: map['book']['publisher_name'].toString(),
         cover_note: map['book']['cover_note']);

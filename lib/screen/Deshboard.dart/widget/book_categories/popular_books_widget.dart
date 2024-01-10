@@ -11,7 +11,7 @@ import '../../../book_categories_list/book_categorires_list.dart';
 import '../../../book_screen/book_cart.dart';
 import '../titlename_withbutton.dart';
 
-class PopularBookWidget extends StatefulWidget {
+class PopularBookWidget extends StatefulWidget { 
   const PopularBookWidget({Key? key}) : super(key: key);
 
   @override

@@ -15,6 +15,7 @@ import 'package:dhanshirisapp/provider/singinmodel.dart';
 import 'package:dhanshirisapp/provider/subcription.dart';
 import 'package:dhanshirisapp/provider/theme_provider.dart';
 import 'package:dhanshirisapp/route_generator.dart';
+import 'package:dhanshirisapp/screen/Deshboard.dart/Dashboard.dart';
 import 'package:dhanshirisapp/screen/Deshboard.dart/text_lighlighit.dart';
 import 'package:dhanshirisapp/screen/about%20page/aboutpage.dart';
 import 'package:dhanshirisapp/screen/book_read_page_details.dart';
@@ -24,6 +25,7 @@ import 'package:dhanshirisapp/screen/first_loadingscreen.dart';
 import 'package:dhanshirisapp/screen/about_app.dart';
 import 'package:dhanshirisapp/screen/music_player/music_player.dart';
 import 'package:dhanshirisapp/screen/text_audio_file.dart';
+import 'package:dhanshirisapp/screen/wishlist/update_Checker.dart';
 import 'package:dhanshirisapp/services/push_notification.dart';
 import 'package:dhanshirisapp/widget/textfield_demo.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -31,10 +33,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-//import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-// StreamController<bool> isLightTheme = StreamController();
+import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
+import 'provider/delete_account.dart';
+import 'dart:convert';
 
 Future<void> backgroundHandler(RemoteMessage message) async {
   NotificationService.display(message);
@@ -45,13 +50,9 @@ Future<void> backgroundHandler(RemoteMessage message) async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   NotificationService.initialize();
   FirebaseMessaging.instance.getInitialMessage();
-  // FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
-  // FirebaseCrashlytics.instance.crash();
-  //HttpOverrides.global = new MyHttpOverrides();
 
   runApp(
     DevicePreview(
@@ -84,11 +85,80 @@ class Boichitro extends StatefulWidget {
 }
 
 class _BoichitroState extends State<Boichitro> {
+  String currentVersion = '';
+  String staticVersionCode = '25.0.1';
+
+  Future<void> getCurrentAppVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    final cv = packageInfo.version;
+    setState(() {
+      currentVersion = cv;
+      print('current version' + currentVersion);
+    });
+  }
+
+  // Future<void> updateDialog(BuildContext context) async {
+  //   await showDialog(
+  //     barrierDismissible: false,
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: Text('Update New Version!'),
+  //         content: Text('A new version is available.'),
+  //         actions: [
+  //           // TextButton(
+  //           //   onPressed: () {
+  //           //     Navigator.of(context).pop();
+  //           //   },
+  //           //   child: Text('Cancel'),
+  //           // ),
+  //           TextButton(
+  //             onPressed: () async {
+  //               await launchUrl(
+  //                   Uri.parse(
+  //                       'https://play.google.com/store/apps/details?id=com.dhansiri.communicationltm.boichitro&pcampaignid=web_share'),
+  //                   mode: LaunchMode.externalApplication);
+  //             },
+  //             child: Text('Update'),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
+
+  // Future<void> getLatestVersion() async {
+  //   var apiUrl = Uri.parse('https://boichitro.com.bd/api/v1/version/android/');
+  //   try {
+  //     var response = await http.get(apiUrl);
+  //     if (response.statusCode == 200) {
+  //       var data = json.decode(response.body);
+  //       print('server version' + data['version']);
+  //       if (staticVersionCode != data['version']) {
+  //         updateDialog(context);
+  //       }
+  //       // setState(() {
+  //       //   latestVersion != data['version'];
+  //       //
+  //       // });
+  //     } else {
+  //       print('StaticVersion is matched ');
+  //       throw Exception('Failed to fetch data');
+  //     }
+  //   } catch (error) {
+  //     print('Error: $error');
+  //   }
+  //   setState(() {
+  //     print('static version' + staticVersionCode);
+  //   });
+  // }
+
   @override
   void initState() {
     print('i am initState');
     super.initState();
-
+    getCurrentAppVersion();
+    // getLatestVersion();
     FirebaseMessaging.onMessage.listen((message) {
       print('i am message');
       if (message.notification != null) {
@@ -98,26 +168,10 @@ class _BoichitroState extends State<Boichitro> {
         print(message);
       }
       NotificationService.display(message);
-      // FlutterRingtonePlayer.play(
-      //   android: AndroidSounds.ringtone,
-      //   ios: IosSounds.glass,
-      //   // looping: true, // Android only - API >= 28
-      //   volume: 1, // Android only - API >= 28
-      //   asAlarm: false, // Android only - all APIs
-      // );
     });
-// on app breckgroud
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
       NotificationService.display(message);
-      // FlutterRingtonePlayer.play(
-      //   android: AndroidSounds.ringtone,
-      //   ios: IosSounds.glass,
-      //   // looping: true, // Android only - API >= 28
-      //   volume: 1, // Android only - API >= 28
-      //   asAlarm: false, // Android only - all APIs
-      // );
     });
-// App Backgroud
   }
 
   @override
@@ -125,6 +179,7 @@ class _BoichitroState extends State<Boichitro> {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider.value(value: SubcriptionModel()),
+          ChangeNotifierProvider.value(value: DeleteAccountProvider()),
           ChangeNotifierProvider.value(value: HighlightProvider()),
           ChangeNotifierProvider.value(value: BookReadtModel()),
           ChangeNotifierProvider.value(value: AuthProvider()),
@@ -137,22 +192,11 @@ class _BoichitroState extends State<Boichitro> {
         ],
         child: Sizer(builder: (context, orientation, deviceType) {
           return Consumer<ThemeProvider>(
-            child: SplashScreen(),
-            //child: MusicPlayer(),
-            // child: MainPage(
-            //   title: '',
-            // ),
-            //child: SeletectedText(),
-            // child: BookRequestingScreen(),
-            //child: AboutApp(),
-            // child: SplashScreen(),
-            // child: TextFieldWidget(),'
-            // child: TextAudioFile(),
+            child: currentVersion == staticVersionCode
+                ? SplashScreen()
+                : UpdateChecker(),
             builder: (context, model, child) {
               return MaterialApp(
-                // ------device preview test----
-                // locale: DevicePreview.locale(context), // Add the locale here
-                //   builder: DevicePreview.appBuilder,
                 debugShowCheckedModeBanner: false,
                 supportedLocales: context.supportedLocales,
                 localizationsDelegates: context.localizationDelegates,

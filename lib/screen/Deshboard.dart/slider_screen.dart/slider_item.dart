@@ -1,8 +1,10 @@
 import 'package:dhanshirisapp/model/bookInfo.dart';
 import 'package:dhanshirisapp/model/sliderimage.dart';
 import 'package:dhanshirisapp/provider/auth.dart';
+import 'package:dhanshirisapp/screen/audio/audio_book_details.dart';
 import 'package:dhanshirisapp/screen/book_api_call.dart';
 import 'package:dhanshirisapp/screen/book_screen/book_details.dart';
+import 'package:dhanshirisapp/screen/magazine/magazine_details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +22,7 @@ class SlideItem extends StatelessWidget {
         Provider.of<AuthProvider>(context, listen: false);
     return GestureDetector(
       onTap: () {
+        // if (sliderimage.book_type == 'ebook') {
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -27,6 +30,24 @@ class SlideItem extends StatelessWidget {
                       sliderimage,
                       sliderimage.cover_image.toString(),
                     )));
+        //   } else if (sliderimage.book_type == 'magazine') {
+        //     Navigator.push(
+        //         context,
+        //         MaterialPageRoute(
+        //             builder: (context) => MagazineDetails(
+        //                   sliderimage,
+        //                   sliderimage.cover_image.toString(),
+        //                 )));
+        //   } else {
+        //     Navigator.push(
+        //         context,
+        //         MaterialPageRoute(
+        //           builder: (context) => AudioBookDetails(
+        //             sliderimage,
+        //             sliderimage.cover_image.toString(),
+        //           ),
+        //         ));
+        //   }
       },
       child: Column(
         children: [

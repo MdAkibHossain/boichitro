@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dhanshirisapp/constants/app_constants.dart';
@@ -9,8 +10,10 @@ import 'package:dhanshirisapp/screen/History/history_page.dart';
 import 'package:dhanshirisapp/screen/auth/login_screen.dart';
 import 'package:dhanshirisapp/services/secure_storage_service.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:http/http.dart' as http;
 
 import '../provider/theme_provider.dart';
 
@@ -21,6 +24,7 @@ class SplashScreen extends StatefulWidget {
 
 class _LoadinScreenState extends State<SplashScreen> {
   String message = 'check';
+  
 
   Future _authCheck(BuildContext context) async {
     AuthProvider profileModel =
@@ -30,6 +34,7 @@ class _LoadinScreenState extends State<SplashScreen> {
     //     key: AUTH_TOKEN_KEY,
     //     value:
     //         '3e21293c1dbbf030142eecb316a58da37cef5535094f61017dcb5a0b99fd6691');
+    print('Auth Check');
     var token = await SecureStorageService().readValue(key: AUTH_TOKEN_KEY);
     if (token != null) {
       final Map<String, dynamic> authentication =
@@ -63,11 +68,78 @@ class _LoadinScreenState extends State<SplashScreen> {
     }
   }
 
+  // Future<void> getCurrentAppVersion() async {
+  //   PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  //   final cv = packageInfo.version;
+  //   setState(() {
+  //     currentVersion = cv;
+  //     print('cccccccvvvv' + currentVersion);
+  //   });
+  // }
+
+  // Future<void> checkForUpdate() async {
+  //   // final url = 'ddd';
+  //   // print('AAAAAEEEEE' +
+  //   //     currentVersion +
+  //   //     'AAAAAAAAAAAAAAAPPPPPPPPPPPPVVVVVVVVVVVVVVVVV');
+
+  //   // try {
+  //   //   final response = await http.get(Uri.parse(url));
+  //   //   if (response.statusCode == 200) {
+  //   //     // Parse the HTML to get the latest version
+  //   //     // final latestVersion = response.body;
+  //   //     log('AAAAAAAAAAAAAAAPPPPPPPPPPPPVVVVVVVVVVVVVVVVV');
+  //   //     print(currentVersion + 'AAAAAAAAAAAAAAAPPPPPPPPPPPPVVVVVVVVVVVVVVVVV');
+  //   //     setState(() {
+  //   //       latestVersion = response.body.toString();
+  //   //     });
+
+  //   if (latestVersion == currentVersion) {
+  //     // A newer version is available, show a Snackbar
+  //     print('version available');
+  //     showUpdateSnackbar();
+  //   } else {
+  //     Navigator.push(
+  //         context, MaterialPageRoute(builder: (context) => SplashScreen()));
+  //   }
+  // }
+  // // } catch (e) {
+  // //   print('Error: $e');
+  // // }
+  // // }
+
   @override
   void didChangeDependencies() {
     _authCheck(context);
     super.didChangeDependencies();
   }
+
+  // void initState() {
+  //   super.initState();
+    // getCurrentAppVersion();
+    // // Perform a check for the latest version
+    // checkForUpdate();
+  // }
+
+  // void showUpdateSnackbar() {
+  //   ScaffoldMessenger.of(context).showSnackBar(
+  //     SnackBar(
+  //       content: Text('A new version is available. Please update your app.'),
+  //       action: SnackBarAction(
+  //         label: 'UPDATE',
+  //         onPressed: () {
+  //           // Logic to redirect the user to the Play Store
+  //           // Replace 'com.yourapp.package' with your app's package name
+  //           final url =
+  //               'https://play.google.com/store/apps/details?id=com.yourapp.package';
+  //           // Launch the Play Store URL
+  //           // You might need to use the url_launcher package for this
+  //           print('Redirect user to update the app');
+  //         },
+  //       ),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

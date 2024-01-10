@@ -26,12 +26,14 @@ class BookReadPage extends StatefulWidget {
   int? book_id;
   String? book_name;
   Orther orther;
+  bool? is_pdf;
   BookReadPage(
       {required this.bookpagemodel,
       required this.book_name,
       required this.orther,
       required this.book_details,
-      this.book_id});
+      this.book_id,
+      this.is_pdf});
   @override
   _BookReadScreenState createState() => _BookReadScreenState();
 }

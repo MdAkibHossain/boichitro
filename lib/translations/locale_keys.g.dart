@@ -6,10 +6,17 @@ abstract class LocaleKeys {
   static const next = "next";
   static const otp = "otp";
   static const recent = "recent";
+  static const ign = "IGN";
+  static const ign_details = "IGN Details";
+  static const somogro = "Somogro";
+  static const somogro_details = "Somogro Details";
   static const mostpopular = "mostpopular";
   static const categories = "categories";
   static const audiobook = "audiobook";
   static const popular = "popular";
+  static const magazine_details = "Magazine Details";
+  static const magazine = "Magazine";
+  static const pdf_book = "Pdf Book";
   static const search = "search";
   static const myprofile = "myprofile";
   static const subscribe = "subscribe";
@@ -29,6 +36,7 @@ abstract class LocaleKeys {
   static const published = "published";
   static const version = "version";
   static const aboutbook = "aboutbook";
+  static const aboutmagazine = "About Magazine";
   static const readmore = "readmore";
   static const personalinformation = "personalinformation";
   static const contactnumber = "contactnumber";

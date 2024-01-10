@@ -1,7 +1,7 @@
 class AppConstants {
   static const String APP_NAME = 'Boichitro';
   //static const String BASE_URL = 'http://test.boichitro.com.bd/api/v1/archive/slider-image-list/';
-  static const String BASE_URL = 'https://boichitro.com.bd/';
+  static const String BASE_URL = 'https://boichitro.com.bd';
   static const String REFRESH_TOKEN =
       "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoyNDk1Nzk0NTg0LCJqdGkiOiJjZjVkMGUzZjg2YTU0NGM3ODczZmExNjUxYzMwOWE1MyIsInVzZXJfaWQiOjI4fQ.TlMcVGiu7W_ObmR5kY-lReV4rFa2IJd3uHZI8lCXRBY";
   static const String SOCIALMEDIA_LOGIN = '/api/v1/socialmedia/login/';
@@ -22,7 +22,6 @@ class AppConstants {
   static const String MY_SUBCRIPTION = '/api/v1/subscription/my-subscription/';
   static const String MY_SUBCRIPTION_HISTORY =
       '/api/v1/subscription/my-subscription-history/';
-
   static const String SUBCRIPTION_TYPES =
       '/api/v1/subscription/subscription-types/';
 
@@ -43,6 +42,6 @@ class AppConstants {
       '/api/v1/subscription/create-subscription/';
   static const String CREATE_BOOK_REQUEST =
       '/api/v1/archive/create-book-request/';
-  static const String AUDIO_BOOKS = '/api/v1/archive/audio-books/';
+  static const String AUDIO_BOOKS = '/api/v1/archive/audio-book/';
   static const String MY_BOOK_REQUESTS = '/api/v1/archive/my-book-requests/';
 }

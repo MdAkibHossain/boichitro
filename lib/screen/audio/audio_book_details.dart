@@ -7,7 +7,9 @@ import 'package:dhanshirisapp/provider/deshboard.dart';
 import 'package:dhanshirisapp/provider/favourit_list.dart';
 import 'package:dhanshirisapp/provider/subcription.dart';
 import 'package:dhanshirisapp/provider/theme_provider.dart';
+import 'package:dhanshirisapp/screen/audio/split_audio_player.dart';
 import 'package:dhanshirisapp/screen/book_api_call.dart';
+import 'package:dhanshirisapp/screen/music_player/music_player.dart';
 import 'package:dhanshirisapp/services/secure_storage_service.dart';
 import 'package:dhanshirisapp/widget/carosel_image_slider.dart';
 import 'package:dhanshirisapp/widget/page_manager.dart';
@@ -233,7 +235,7 @@ class _BookDetailsState extends State<AudioBookDetails> {
                 height: 2.0.h,
               ),
               Container(
-                  height: 30.0.h,
+                  height: 45.0.h,
                   width: 100.0.w,
                   margin: EdgeInsets.only(left: 05.0.w, right: 05.0.w),
                   child: SingleChildScrollView(
@@ -247,76 +249,33 @@ class _BookDetailsState extends State<AudioBookDetails> {
               SizedBox(
                 height: 2.0.h,
               ),
-              Container(
-                height: 20.0.h,
-                width: 100.0.w,
-                margin: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                child: Center(
-                    child: WebView(
-                  initialUrl: widget.recentlist.description,
-
-                  // initialUrl:
-                  //     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1216818949%3Fsecret_token%3Ds-UuOzIxSiZiw&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true',
-                  javascriptMode: JavascriptMode.unrestricted,
-                  onWebViewCreated: (WebViewController webViewController) {},
-                  onPageStarted: (String url) {
-                    print('Page started loading: $url');
-                  },
-                  onPageFinished: (String url) {
-                    print('Page finished loading: $url');
-                  },
-                  gestureNavigationEnabled: true,
-                )),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AudioApiCall(
+                              id: widget.recentlist.id,
+                              book_name: widget.recentlist.bookname)));
+                },
+                child: Container(
+                  height: 5.0.h,
+                  width: 100.0.w,
+                  margin: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
+                  decoration: BoxDecoration(
+                      color: Color(0xffc60e13),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                    child: Text(
+                      'Listen Book',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white),
+                    ),
+                  ),
+                ),
               )
-              // Container(
-              //   margin:
-              //       EdgeInsets.only(left: 05.0.w, right: 05.0.w, top: 2.0.h),
-              //   child: Column(
-              //     children: [
-              //       // Spacer(),
-
-              //       ValueListenableBuilder<ProgressBarState>(
-              //         valueListenable: _pageManager.progressNotifier,
-              //         builder: (_, value, __) {
-              //           return ProgressBar(
-              //             progress: value.current,
-              //             buffered: value.buffered,
-              //             total: value.total,
-              //             onSeek: _pageManager.seek,
-              //           );
-              //         },
-              //       ),
-              //       ValueListenableBuilder<ButtonState>(
-              //         valueListenable: _pageManager.buttonNotifier,
-              //         builder: (_, value, __) {
-              //           switch (value) {
-              //             case ButtonState.loading:
-              //               return Container(
-              //                 margin: EdgeInsets.all(8.0),
-              //                 width: 32.0,
-              //                 height: 32.0,
-              //                 child: CircularProgressIndicator(),
-              //               );
-              //             case ButtonState.paused:
-              //               return IconButton(
-              //                 icon: Icon(Icons.play_arrow),
-              //                 iconSize: 32.0,
-              //                 onPressed: _pageManager.play,
-              //               );
-              //             case ButtonState.playing:
-              //               return IconButton(
-              //                 icon: Icon(Icons.pause),
-              //                 iconSize: 32.0,
-              //                 onPressed: _pageManager.pause,
-              //               );
-              //           }
-              //         },
-              //       ),
-              //     ],
-              //   ),
-              // ),
             ],
           ),
         ),

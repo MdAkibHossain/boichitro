@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">722338914030-grldq2oad2fvg0ge4hmfdvh96fb6140f.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">722338914030</string>
+    <string name="google_api_key" translatable="false">AIzaSyBtdZu3KOUae4yu3EtRF5XpSrckDGlZt50</string>
+    <string name="google_app_id" translatable="false">1:722338914030:android:164bc627f82f38e736ddff</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBtdZu3KOUae4yu3EtRF5XpSrckDGlZt50</string>
+    <string name="google_storage_bucket" translatable="false">boichitro-f4358.appspot.com</string>
+    <string name="project_id" translatable="false">boichitro-f4358</string>
+</resources>

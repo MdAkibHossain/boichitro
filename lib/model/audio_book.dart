@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AudioBookModel {
   int? id;
   String? audio_file;
+  String? audio_link;
   String? short_name;
   String? rating;
   String? bookname;
@@ -19,6 +20,7 @@ class AudioBookModel {
     required this.id,
     required this.audio_file,
     required this.short_name,
+    required this.audio_link,
     required this.rating,
     required this.bookname,
     required this.cover_image,
@@ -33,18 +35,19 @@ class AudioBookModel {
 
   factory AudioBookModel.fromJson(Map<String, dynamic> map) {
     return AudioBookModel(
-        id: map['id'],
+        id: map['pk'],
         audio_file: map['audio_file'],
-        short_name: map['book']['short_name'],
-        bookname: map['book']['book_name'],
-        cover_image: map['book']['cover_image'],
-        rating: map['book']['rating'].toString(),
-        description: map['book']['description'],
-        edition: map['book']['edition'],
-        isbn: map['book']['isbn'],
-        author: map['book']['author']['name'],
-        publisher: map['book']['publisher']['name'],
-        is_paid: map['book']['is_paid'],
-        cover_note: map['book']['cover_note']);
+        short_name: map['book_name'],
+        bookname: map['book_name'],
+        cover_image: map['cover_image'],
+        rating: map['rating'].toString(),
+        description: map['description'],
+        edition: map['edition'],
+        isbn: map['isbn'],
+        author: map['author_name'],
+        publisher: map['publisher_name'],
+        is_paid: map['is_paid'],
+        audio_link: map['audi_link'],
+        cover_note: map['cover_note']);
   }
 }
