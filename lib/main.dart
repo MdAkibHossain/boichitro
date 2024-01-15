@@ -37,6 +37,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 import 'provider/delete_account.dart';
 import 'dart:convert';
 
@@ -85,7 +86,7 @@ class Boichitro extends StatefulWidget {
 
 class _BoichitroState extends State<Boichitro> {
   String currentVersion = '';
-  String latestVersion = '';
+  String staticVersionCode = '25.0.1';
 
   Future<void> getCurrentAppVersion() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
@@ -96,33 +97,68 @@ class _BoichitroState extends State<Boichitro> {
     });
   }
 
-  Future<void> getLatestVersion() async {
-    var apiUrl = Uri.parse('https://boichitro.com.bd/api/v1/version/android/');
-    try {
-      var response = await http.get(apiUrl);
-      if (response.statusCode == 200) {
-        var data = json.decode(response.body);
-        print('server version' + data['version']);
-        setState(() {
-          latestVersion = data['version'];
-        });
-      } else {
-        throw Exception('Failed to fetch data');
-      }
-    } catch (error) {
-      print('Error: $error');
-    }
-    setState(() {
-      print('latest version' + latestVersion);
-    });
-  }
+  // Future<void> updateDialog(BuildContext context) async {
+  //   await showDialog(
+  //     barrierDismissible: false,
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: Text('Update New Version!'),
+  //         content: Text('A new version is available.'),
+  //         actions: [
+  //           // TextButton(
+  //           //   onPressed: () {
+  //           //     Navigator.of(context).pop();
+  //           //   },
+  //           //   child: Text('Cancel'),
+  //           // ),
+  //           TextButton(
+  //             onPressed: () async {
+  //               await launchUrl(
+  //                   Uri.parse(
+  //                       'https://play.google.com/store/apps/details?id=com.dhansiri.communicationltm.boichitro&pcampaignid=web_share'),
+  //                   mode: LaunchMode.externalApplication);
+  //             },
+  //             child: Text('Update'),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
+
+  // Future<void> getLatestVersion() async {
+  //   var apiUrl = Uri.parse('https://boichitro.com.bd/api/v1/version/android/');
+  //   try {
+  //     var response = await http.get(apiUrl);
+  //     if (response.statusCode == 200) {
+  //       var data = json.decode(response.body);
+  //       print('server version' + data['version']);
+  //       if (staticVersionCode != data['version']) {
+  //         updateDialog(context);
+  //       }
+  //       // setState(() {
+  //       //   latestVersion != data['version'];
+  //       //
+  //       // });
+  //     } else {
+  //       print('StaticVersion is matched ');
+  //       throw Exception('Failed to fetch data');
+  //     }
+  //   } catch (error) {
+  //     print('Error: $error');
+  //   }
+  //   setState(() {
+  //     print('static version' + staticVersionCode);
+  //   });
+  // }
 
   @override
   void initState() {
     print('i am initState');
     super.initState();
     getCurrentAppVersion();
-    getLatestVersion();
+    // getLatestVersion();
     FirebaseMessaging.onMessage.listen((message) {
       print('i am message');
       if (message.notification != null) {
@@ -156,7 +192,7 @@ class _BoichitroState extends State<Boichitro> {
         ],
         child: Sizer(builder: (context, orientation, deviceType) {
           return Consumer<ThemeProvider>(
-            child: currentVersion == latestVersion
+            child: currentVersion == staticVersionCode
                 ? SplashScreen()
                 : UpdateChecker(),
             builder: (context, model, child) {

@@ -214,21 +214,24 @@ class _LoginScreenState extends State<LoginScreen> {
                   )),
               SizedBox(height: 3.0.h),
               Padding(
-                padding: EdgeInsets.only(left: 7.w, right: 7.w),
-                child: CheckboxListTile(
-                  value: _isChecked,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      _isChecked = value!;
-                    });
-                  },
-                  title: Row(
+                padding: EdgeInsets.symmetric(horizontal: 1.5.h),
+                child: SizedBox(
+                  width: 75.0.w,
+                  child: Row(
                     children: [
+                      Checkbox(
+                        value: _isChecked,
+                        side: BorderSide(color: Colors.black),
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _isChecked = value!;
+                          });
+                        },
+                      ),
                       Text(
                         'I accept the ',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                        ),
+                        style:
+                            TextStyle(fontSize: 11.0.sp, color: Colors.black),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -242,13 +245,50 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Text(
                           'terms and conditions',
                           style:
-                              TextStyle(fontSize: 12.0.sp, color: Colors.blue),
+                              TextStyle(fontSize: 11.0.sp, color: Colors.blue),
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
+
+              // Padding(
+              //   padding: EdgeInsets.only(left: 7.w, right: 7.w),
+              //   child: CheckboxListTile(
+              //     value: _isChecked,
+              //     onChanged: (bool? value) {
+              //       setState(() {
+              //         _isChecked = value!;
+              //       });
+              //     },
+              //     title: Row(
+              //       children: [
+              //         Text(
+              //           'I accept the ',
+              //           style: TextStyle(
+              //             fontSize: 12.0.sp,
+              //           ),
+              //         ),
+              //         GestureDetector(
+              //           onTap: () {
+              //             Navigator.pushReplacement(
+              //                 context,
+              //                 MaterialPageRoute(
+              //                     builder: (_) => TermsandCons(
+              //                         termsandconsUrl:
+              //                             'https://www.freeprivacypolicy.com/live/5173e110-3e2a-4356-8ea2-fb57bb120eea?fbclid=IwAR3DfPkXk-jrW0q4Sz2rKNmW0LhMl9X26fr9Wx059Ha3TJhQOXnUgPAXPDU')));
+              //           },
+              //           child: Text(
+              //             'terms and conditions',
+              //             style:
+              //                 TextStyle(fontSize: 12.0.sp, color: Colors.blue),
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
               // SizedBox(height: 3.0.h),
               Center(
                 child: Container(

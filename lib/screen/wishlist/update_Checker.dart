@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:dhanshirisapp/screen/first_loadingscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
 
 class UpdateChecker extends StatefulWidget {
   @override
@@ -11,13 +14,15 @@ class UpdateChecker extends StatefulWidget {
 }
 
 class _UpdateCheckerState extends State<UpdateChecker> {
-  // String currentVersion = '';
-  // String latestVersion = '2.1.0';
+  String currentVersion = '';
+  // String latestVersion = '25.0.1';
+  // String staticVersionCode = '25.0.1';
   @override
   void initState() {
     super.initState();
 
-    // getCurrentAppVersion();
+    getCurrentAppVersion();
+    // getLatestVersion();
     // // Perform a check for the latest version
     // checkForUpdate();
   }
@@ -60,6 +65,70 @@ class _UpdateCheckerState extends State<UpdateChecker> {
   //         context, MaterialPageRoute(builder: (context) => SplashScreen()));
   //   }
   // }
+  Future<void> getCurrentAppVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    final cv = packageInfo.version;
+    setState(() {
+      currentVersion = cv;
+      print('current version' + currentVersion);
+    });
+  }
+
+  // Future<void> updateDialog(BuildContext context) async {
+  //   await showDialog(
+  //     barrierDismissible: false,
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: Text('Update New Version!'),
+  //         content: Text('A new version is available.'),
+  //         actions: [
+  //           // TextButton(
+  //           //   onPressed: () {
+  //           //     Navigator.of(context).pop();
+  //           //   },
+  //           //   child: Text('Cancel'),
+  //           // ),
+  //           TextButton(
+  //             onPressed: () async {
+  //               await launchUrl(
+  //                   Uri.parse(
+  //                       'https://play.google.com/store/apps/details?id=com.dhansiri.communicationltm.boichitro&pcampaignid=web_share'),
+  //                   mode: LaunchMode.externalApplication);
+  //             },
+  //             child: Text('Update'),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
+
+  // Future<void> getLatestVersion() async {
+  //   var apiUrl = Uri.parse('https://boichitro.com.bd/api/v1/version/android/');
+  //   try {
+  //     var response = await http.get(apiUrl);
+  //     if (response.statusCode == 200) {
+  //       var data = json.decode(response.body);
+  //       print('server version' + data['version']);
+  //       if (staticVersionCode != data['version']) {
+  //         updateDialog(context);
+  //       }
+  //       // setState(() {
+  //       //   latestVersion != data['version'];
+  //       //
+  //       // });
+  //     } else {
+  //       print('StaticVersion is matched ');
+  //       throw Exception('Failed to fetch data');
+  //     }
+  //   } catch (error) {
+  //     print('Error: $error');
+  //   }
+  //   setState(() {
+  //     print('latest version' + staticVersionCode);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -68,14 +137,14 @@ class _UpdateCheckerState extends State<UpdateChecker> {
       content: Text(
           'A new version of the app is available. Please update to the latest version.'),
       actions: <Widget>[
-        TextButton(
-          onPressed: () {
-            // Dismiss the dialog
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SplashScreen()));
-          },
-          child: Text('CANCEL'),
-        ),
+        // TextButton(
+        //   onPressed: () {
+        //     // Dismiss the dialog
+        //     Navigator.push(context,
+        //         MaterialPageRoute(builder: (context) => SplashScreen()));
+        //   },
+        //   child: Text('CANCEL'),
+        // ),
         TextButton(
           onPressed: () {
             // Execute the update logic
