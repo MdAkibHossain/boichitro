@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dhanshirisapp/model/book_request.dart';
 import 'package:dhanshirisapp/model/shomogro_books_read.dart';
 import 'package:dhanshirisapp/utill/app_constants.dart';
+import 'package:dhanshirisapp/utill/debug_utils.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -163,6 +164,7 @@ class BookReadtModel with ChangeNotifier {
           jsonDecode((utf8.decode(response.bodyBytes)));
 
       print(responseData);
+      logView(responseData.toString());
       responseData['audio_book'].forEach((dynamic data) {
         final AudioBooksRead _audio = AudioBooksRead.fromJson(data);
         print('-------------------RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR');

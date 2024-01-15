@@ -105,7 +105,8 @@ class _AudioListenerState extends State<AudioListener> {
               child: ListView.builder(
                   itemCount: widget.bookcount,
                   itemBuilder: (context, index) {
-                    final booknames = widget.bookdetails![index].part;
+                    print(widget.bookdetails![index].url.toString());
+                    //  final booknames = widget.bookdetails![index].part;
                     return Padding(
                       padding: EdgeInsets.all(1.0.h),
                       child: Column(
