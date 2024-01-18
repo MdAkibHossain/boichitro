@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:dhanshirisapp/constants/app_constants.dart';
 import 'package:dhanshirisapp/provider/delete_account.dart';
 import 'package:dhanshirisapp/provider/deshboard.dart';
@@ -16,12 +17,15 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../provider/favourit_list.dart';
+import '../../utill/debug_utils.dart';
 import 'widget/audio_book/audio_book_widget.dart';
 import 'widget/book_categories/popular_books_widget.dart';
 import 'widget/book_categories/recent_books_widget.dart';
 import 'widget/book_categories_widget.dart';
 import 'widget/image_slider._widget.dart';
+import 'package:http/http.dart' as http;
 
 class Dashboard extends StatefulWidget {
   @override
@@ -131,6 +135,68 @@ class _DashboardState extends State<Dashboard> {
     categoryProvider.fetchCategory(token);
   }
 
+  String? currentVersion;
+  String staticVersionCode = '25.0.3';
+
+  // Future<void> getCurrentAppVersion() async {
+  //   PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  //   final cv = packageInfo.version;
+  //   setState(() {
+  //     currentVersion = cv;
+  //     print('current version' + currentVersion);
+  //   });
+  // }
+
+  Future<void> getLatestVersion() async {
+    var apiUrl = Uri.parse('https://boichitro.com.bd/api/v1/version/android/');
+    try {
+      var response = await http.get(apiUrl);
+      if (response.statusCode == 200) {
+        var data = json.decode(response.body);
+        currentVersion = data['version'];
+        print('server version' + data['version']);
+        if (currentVersion.toString() != staticVersionCode.toString()) {
+          updateDialog(context);
+        }
+      }
+    } catch (error) {
+      print('Error: $error');
+    }
+  }
+
+  Future<void> updateDialog(BuildContext context) async {
+    await showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: AlertDialog(
+            title: Text('Update New Version!'),
+            content: Text('A new version is available.'),
+            actions: [
+              // TextButton(
+              //   onPressed: () {
+              //     Navigator.of(context).pop();
+              //   },
+              //   child: Text('Cancel'),
+              // ),
+              TextButton(
+                onPressed: () async {
+                  await launchUrl(
+                      Uri.parse(
+                          'https://play.google.com/store/apps/details?id=com.dhansiri.communicationltm.boichitro&pcampaignid=web_share'),
+                      mode: LaunchMode.externalApplication);
+                },
+                child: Text('Update'),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
 //  @override
 //   void dispose() {
 //     super.dispose();
@@ -138,6 +204,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   void didChangeDependencies() async {
     //------initial call-------
+    getLatestVersion();
     var token = await SecureStorageService().readValue(key: AUTH_TOKEN_KEY);
     FavouriteProviderModel favouritebooks =
         Provider.of<FavouriteProviderModel>(context, listen: false);
