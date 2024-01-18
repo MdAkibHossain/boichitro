@@ -128,6 +128,8 @@ class AuthProvider with ChangeNotifier {
       }
       await SecureStorageService()
           .writeValue(key: AUTH_TOKEN_KEY, value: mapResponse['token']);
+      (await SharedPreferences.getInstance())
+          .setString(AUTH_TOKEN_KEY, mapResponse['token']);
       hasError = false;
       isloadingsocailmediasign = false;
       notifyListeners();
@@ -256,6 +258,8 @@ class AuthProvider with ChangeNotifier {
     // await prefs.setString(AUTH_TOKEN_KEY, mapResponse['token']);
     await SecureStorageService()
         .writeValue(key: AUTH_TOKEN_KEY, value: mapResponse['token']);
+    (await SharedPreferences.getInstance())
+        .setString(AUTH_TOKEN_KEY, mapResponse['token']);
     print(mapResponse);
     http.Response responses;
     try {

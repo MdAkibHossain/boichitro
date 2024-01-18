@@ -12,6 +12,7 @@ import 'package:dhanshirisapp/services/secure_storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,7 +25,6 @@ class SplashScreen extends StatefulWidget {
 
 class _LoadinScreenState extends State<SplashScreen> {
   String message = 'check';
-  
 
   Future _authCheck(BuildContext context) async {
     AuthProvider profileModel =
@@ -35,7 +35,9 @@ class _LoadinScreenState extends State<SplashScreen> {
     //     value:
     //         '3e21293c1dbbf030142eecb316a58da37cef5535094f61017dcb5a0b99fd6691');
     print('Auth Check');
-    var token = await SecureStorageService().readValue(key: AUTH_TOKEN_KEY);
+    // var token = await SecureStorageService().readValue(key: AUTH_TOKEN_KEY);
+    var token =
+        (await SharedPreferences.getInstance()).getString(AUTH_TOKEN_KEY);
     if (token != null) {
       final Map<String, dynamic> authentication =
           await profileModel.authenticationProfiledata(token.toString());
@@ -116,9 +118,9 @@ class _LoadinScreenState extends State<SplashScreen> {
 
   // void initState() {
   //   super.initState();
-    // getCurrentAppVersion();
-    // // Perform a check for the latest version
-    // checkForUpdate();
+  // getCurrentAppVersion();
+  // // Perform a check for the latest version
+  // checkForUpdate();
   // }
 
   // void showUpdateSnackbar() {
