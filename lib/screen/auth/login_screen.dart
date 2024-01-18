@@ -212,11 +212,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextStyle(color: Color(0xffb8242a), fontSize: 2.2.h),
                     ),
                   )),
-              SizedBox(height: 3.0.h),
+              SizedBox(height: 0.5.h),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 1.5.h),
                 child: SizedBox(
-                  width: 75.0.w,
+                  width: 60.0.w,
                   child: Row(
                     children: [
                       Checkbox(
@@ -230,8 +230,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Text(
                         'I accept the ',
-                        style:
-                            TextStyle(fontSize: 11.0.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 9.0.sp, color: Colors.black),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -244,8 +243,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text(
                           'terms and conditions',
+                          maxLines: 2,
                           style:
-                              TextStyle(fontSize: 11.0.sp, color: Colors.blue),
+                              TextStyle(fontSize: 9.0.sp, color: Colors.blue),
                         ),
                       ),
                     ],
@@ -289,7 +289,7 @@ class _LoginScreenState extends State<LoginScreen> {
               //     ),
               //   ),
               // ),
-              // SizedBox(height: 3.0.h),
+              SizedBox(height: 3.1.h),
               Center(
                 child: Container(
                   width: 25.0.w,
@@ -325,7 +325,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                     await _submitFormauth(context, signInModel);
                                   }
                                 : () {
-                                    print(phone.length);
+                                    // showDialog(
+                                    //   context: context,
+                                    //   builder: (context) => AlertDialog(
+                                    //     title: new Text(
+                                    //         'Please Agree this Terms & Condition'),
+                                    //   ),
+                                    // );
                                   },
                           );
                   }),

@@ -136,7 +136,7 @@ class _DashboardState extends State<Dashboard> {
   }
 
   String? currentVersion;
-  String staticVersionCode = '25.0.3';
+  String staticVersionCode = '25.0.4';
 
   // Future<void> getCurrentAppVersion() async {
   //   PackageInfo packageInfo = await PackageInfo.fromPlatform();
