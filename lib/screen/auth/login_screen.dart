@@ -78,10 +78,10 @@ class _LoginScreenState extends State<LoginScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Container(
-          padding: EdgeInsets.all(12.0),
+          padding: EdgeInsets.all(5.0),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            color: Colors.red.shade50, // Customize the color as needed
+            borderRadius: BorderRadius.circular(20.0),
+            color: Colors.red.shade100, // Customize the color as needed
           ),
           child: Text(message,
               style: TextStyle(
@@ -89,8 +89,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               textAlign: TextAlign.center),
         ),
-        duration: Duration(seconds: 2),
-        margin: EdgeInsets.all(10.0), // Add margin as needed
+        duration: Duration(seconds: 3),
+        margin: EdgeInsets.all(5.0), // Add margin as needed
         behavior: SnackBarBehavior.floating,
       ),
     );
