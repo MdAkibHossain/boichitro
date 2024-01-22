@@ -74,6 +74,28 @@ class _LoginScreenState extends State<LoginScreen> {
     // }
   }
 
+  void showCustomSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Container(
+          padding: EdgeInsets.all(12.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color: Colors.red.shade50, // Customize the color as needed
+          ),
+          child: Text(message,
+              style: TextStyle(
+                color: Colors.black,
+              ),
+              textAlign: TextAlign.center),
+        ),
+        duration: Duration(seconds: 2),
+        margin: EdgeInsets.all(10.0), // Add margin as needed
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
   ErrorIcon _errorWidget = new ErrorIcon(false);
 
   set errorWidget(ErrorIcon value) {
@@ -290,6 +312,47 @@ class _LoginScreenState extends State<LoginScreen> {
               //   ),
               // ),
               SizedBox(height: 3.1.h),
+              // Center(
+              //   child: Container(
+              //     width: 25.0.w,
+              //     height: 4.5.h,
+              //     child:
+              //         Consumer<AuthProvider>(builder: (context, model, child) {
+              //       return model.isloadingsign
+              //           ? Center(
+              //               child: CircularProgressIndicator(),
+              //             )
+              //           : ElevatedButton(
+              //               style: ElevatedButton.styleFrom(
+              //                 primary: AppColorFactory.appPrimaryColor,
+              //                 shape: new RoundedRectangleBorder(
+              //                   borderRadius: new BorderRadius.circular(30.0),
+              //                 ),
+              //               ),
+              //               child: Text(
+              //                 // 'Next',
+              //                 LocaleKeys.next.tr(),
+              //                 style: TextStyle(
+              //                   fontSize: 2.0.h,
+              //                   color: Colors.white,
+              //                 ),
+              //               ),
+              //               onPressed: phone_no.length == 10 &&
+              //                       _isChecked == true
+              //                   ? () async {
+              //                       print('i ma working');
+              //                       print(phone.length);
+
+              //                       phone = "+880$phone_no";
+              //                       await _submitFormauth(context, signInModel);
+              //                     }
+              //                   : () {},
+              //             );
+              //     }),
+              //     // shape: RoundedRectangleBorder(
+              //     //     borderRadius: BorderRadius.circular(20)),
+              //   ),
+              // ),
               Center(
                 child: Container(
                   width: 25.0.w,
@@ -308,35 +371,33 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                             child: Text(
-                              // 'Next',
                               LocaleKeys.next.tr(),
                               style: TextStyle(
                                 fontSize: 2.0.h,
                                 color: Colors.white,
                               ),
                             ),
-                            onPressed: phone_no.length == 10 &&
-                                    _isChecked == true
-                                ? () async {
-                                    print('i ma working');
-                                    print(phone.length);
-
-                                    phone = "+880$phone_no";
-                                    await _submitFormauth(context, signInModel);
-                                  }
-                                : () {
-                                    // showDialog(
-                                    //   context: context,
-                                    //   builder: (context) => AlertDialog(
-                                    //     title: new Text(
-                                    //         'Please Agree this Terms & Condition'),
-                                    //   ),
-                                    // );
-                                  },
+                            onPressed: () {
+                              if (phone_no.length != 10) {
+                                showCustomSnackBar(
+                                  context,
+                                  'Please enter a valid 10-digit phone number.',
+                                );
+                              } else if (!_isChecked) {
+                                showCustomSnackBar(
+                                  context,
+                                  'Please agree to the terms and conditions.',
+                                );
+                              } else {
+                                // All conditions met, perform your action
+                                print('I am working');
+                                print(phone.length);
+                                phone = "+880$phone_no";
+                                _submitFormauth(context, signInModel);
+                              }
+                            },
                           );
                   }),
-                  // shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(20)),
                 ),
               ),
               SizedBox(
@@ -405,54 +466,54 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       //.........FACEBOOK.........
 
-                      Expanded(
-                        flex: 1,
-                        child: Consumer<AuthProvider>(
-                          builder: (context, model, child) {
-                            return GestureDetector(
-                              onTap: () async {
-                                try {
-                                  FacebookAuth.instance.login(permissions: [
-                                    "public_profile",
-                                    "email"
-                                  ]).then((value) {
-                                    FacebookAuth.instance
-                                        .getUserData()
-                                        .then((value) async {
-                                      Map<String, dynamic> authdata;
-                                      authdata = {
-                                        'name': value['name'],
-                                        'email': value['email'],
-                                        'image': value['picture']['data']['url']
-                                      };
+                      // Expanded(
+                      //   flex: 1,
+                      //   child: Consumer<AuthProvider>(
+                      //     builder: (context, model, child) {
+                      //       return GestureDetector(
+                      //         onTap: () async {
+                      //           try {
+                      //             FacebookAuth.instance.login(permissions: [
+                      //               "public_profile",
+                      //               "email"
+                      //             ]).then((value) {
+                      //               FacebookAuth.instance
+                      //                   .getUserData()
+                      //                   .then((value) async {
+                      //                 Map<String, dynamic> authdata;
+                      //                 authdata = {
+                      //                   'name': value['name'],
+                      //                   'email': value['email'],
+                      //                   'image': value['picture']['data']['url']
+                      //                 };
 
-                                      print(authdata);
-                                      if (authdata['name'] != '' &&
-                                          authdata['email'] != '') {
-                                        await _submitForm(
-                                          context,
-                                          model,
-                                          authdata['name'],
-                                          authdata['email'],
-                                        );
-                                      }
+                      //                 print(authdata);
+                      //                 if (authdata['name'] != '' &&
+                      //                     authdata['email'] != '') {
+                      //                   await _submitForm(
+                      //                     context,
+                      //                     model,
+                      //                     authdata['name'],
+                      //                     authdata['email'],
+                      //                   );
+                      //                 }
 
-                                      print(value);
-                                    });
-                                  });
-                                } catch (e) {
-                                  print(e);
-                                }
-                              },
-                              child: CircleAvatar(
-                                  radius: 22,
-                                  child: Image(
-                                      image:
-                                          AssetImage('assets/facebook.png'))),
-                            );
-                          },
-                        ),
-                      ),
+                      //                 print(value);
+                      //               });
+                      //             });
+                      //           } catch (e) {
+                      //             print(e);
+                      //           }
+                      //         },
+                      //         child: CircleAvatar(
+                      //             radius: 22,
+                      //             child: Image(
+                      //                 image:
+                      //                     AssetImage('assets/facebook.png'))),
+                      //       );
+                      //     },
+                      //   ),
+                      // ),
                       /////
                     ],
                   )),

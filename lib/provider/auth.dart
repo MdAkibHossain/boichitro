@@ -64,7 +64,8 @@ class AuthProvider with ChangeNotifier {
             message = "already register";
           }
         } else {
-          message = "Not Working perfectly ";
+          message = " OTP sending error. Please try after some time.";
+          // message = "Not Working perfectly ";
           //message = 'mapResponse';
           print('...........');
           print(message);
