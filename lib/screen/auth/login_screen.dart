@@ -847,7 +847,7 @@ class _LoginScreenState extends State<LoginScreen> {
             return AlertDialog(
               backgroundColor: Color(0xFFefe7dc),
               title: Text(
-                'An error Occurred',
+                'Please Try Again ',
               ),
               content: Text(
                 authentication['message'],
