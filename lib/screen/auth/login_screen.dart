@@ -257,11 +257,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       GestureDetector(
                         onTap: () {
                           Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => TermsandCons(
-                                      termsandconsUrl:
-                                          'https://www.freeprivacypolicy.com/live/5173e110-3e2a-4356-8ea2-fb57bb120eea?fbclid=IwAR3DfPkXk-jrW0q4Sz2rKNmW0LhMl9X26fr9Wx059Ha3TJhQOXnUgPAXPDU')));
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => TermsandCons(
+                                termsandconsUrl:
+                                    'https://www.freeprivacypolicy.com/live/5173e110-3e2a-4356-8ea2-fb57bb120eea?fbclid=IwAR3DfPkXk-jrW0q4Sz2rKNmW0LhMl9X26fr9Wx059Ha3TJhQOXnUgPAXPDU',
+                              ),
+                            ),
+                          );
                         },
                         child: Text(
                           'terms and conditions',
@@ -390,8 +393,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 );
                               } else {
                                 // All conditions met, perform your action
-                                print('I am working');
-                                print(phone.length);
+
                                 phone = "+880$phone_no";
                                 _submitFormauth(context, signInModel);
                               }

@@ -33,19 +33,38 @@ class _TermsandConsState extends State<TermsandCons> {
         title: Text('Terms & Conditions'),
       ),
       body: Padding(
-        padding: EdgeInsets.only(top: 3.0.h),
-        child: Container(
-          child: WebView(
-            initialUrl: widget.termsandconsUrl,
-            javascriptMode: JavascriptMode.unrestricted,
-            initialMediaPlaybackPolicy: AutoMediaPlaybackPolicy.always_allow,
-            allowsInlineMediaPlayback: true,
-            gestureRecognizers: Set()
-              ..add(Factory<VerticalDragGestureRecognizer>(
-                  () => VerticalDragGestureRecognizer())),
+          padding: EdgeInsets.only(top: 3.0.h),
+          child: Container(
+            height: 80.0.h,
+            width: double.maxFinite,
+            child: WebView(
+              initialUrl: widget.termsandconsUrl.toString(),
+
+              // initialUrl:
+              // 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1210938040&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true',
+              javascriptMode: JavascriptMode.unrestricted,
+              onWebViewCreated: (WebViewController webViewController) {},
+              onPageStarted: (String url) {
+                print('Page started loading: $url');
+              },
+              onPageFinished: (String url) {
+                print('Page finished loading: $url');
+              },
+              gestureNavigationEnabled: true,
+            ),
+          )
+          // Container(
+          //   child: WebView(
+          //     initialUrl: widget.termsandconsUrl,
+          //     javascriptMode: JavascriptMode.unrestricted,
+          //     initialMediaPlaybackPolicy: AutoMediaPlaybackPolicy.always_allow,
+          //     allowsInlineMediaPlayback: true,
+          //     gestureRecognizers: Set()
+          //       ..add(Factory<VerticalDragGestureRecognizer>(
+          //           () => VerticalDragGestureRecognizer())),
+          //   ),
+          // ),
           ),
-        ),
-      ),
     );
   }
 }

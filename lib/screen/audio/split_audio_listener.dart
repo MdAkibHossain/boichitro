@@ -106,7 +106,7 @@ class _AudioListenerState extends State<AudioListener> {
                   itemCount: widget.bookcount,
                   itemBuilder: (context, index) {
                     print(
-                        'AAAAAAAAAAAA===========${widget.bookdetails![index].url.toString()}');
+                        'Audio url ::${widget.bookdetails![index].url.toString()}');
                     //  final booknames = widget.bookdetails![index].part;
                     return Padding(
                       padding: EdgeInsets.all(1.0.h),
@@ -133,6 +133,7 @@ class _AudioListenerState extends State<AudioListener> {
                             width: double.maxFinite,
                             child: WebView(
                               initialUrl:
+                                  // "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1722264573%3Fsecret_token%3Ds-4EbLMOtkPZI&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true",
                                   widget.bookdetails![index].url.toString(),
 
                               // initialUrl:

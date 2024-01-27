@@ -12,6 +12,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:dhanshirisapp/model/profile_info.dart';
 
+import '../utill/debug_utils.dart';
+
 class AuthProvider with ChangeNotifier {
   UserInfos? _userInfo;
   UserInfos? get userInfodata {
@@ -28,19 +30,19 @@ class AuthProvider with ChangeNotifier {
     String phone_no,
     String app_key,
   ) async {
+    logView("check here");
     bool hasError = true;
     String type = '';
     String message = 'Something went wrong.';
     try {
       isloadingsign = true;
       notifyListeners();
-      debugPrint("Sign in model is called");
+
       final Map<String, dynamic> authdata = {
         'phone': phone_no,
         'app_key': app_key
       };
-      print(json.encode(authdata) + '\nPhone no: ');
-      print(phone_no);
+
       var url = Uri.parse('${AppConstants.BASE_URL}${AppConstants.SIGNUP_OTP}');
       http.Response response =
           await http.post(url, body: json.encode(authdata), headers: {
@@ -49,12 +51,9 @@ class AuthProvider with ChangeNotifier {
         // 'Authorization': 'Bearer $token',
       });
       final String res = response.body;
-      print(res);
-      // print(response.body);
-      // final Map<String, dynamic> responseData = json.decode(response.body);
+      logView(res);
       Map<String, dynamic> mapResponse = JsonDecoder().convert(res);
-      print('-------');
-      print(mapResponse);
+      logView(mapResponse.toString());
       if (mapResponse['status'] == true &&
           mapResponse['is_existing_user'] == false) {
         hasError = false;
@@ -65,17 +64,18 @@ class AuthProvider with ChangeNotifier {
           }
         } else {
           message =
-              " We couldn't sent OTP right now. Please try again after sometime.";
+              "We couldn't send the OTP right now. Please try again after some time.";
           // message = "Not Working perfectly ";
           //message = 'mapResponse';
-          print('...........');
-          print(message);
         }
         //  hasError = false;
       }
       isloadingsign = false;
       notifyListeners();
     } catch (e) {
+      logView("error here");
+      message =
+          "We couldn't send the OTP right now. Please try again after some time.";
       isloadingsign = false;
       notifyListeners();
       print(e);
@@ -162,15 +162,10 @@ class AuthProvider with ChangeNotifier {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     });
-    print(
-        '--------------------------refresh token ------------------------------');
-    print(response.body);
+
     Map<String, dynamic> mapResponse = JsonDecoder().convert(response.body);
-    print(
-        '--------------------------refresh token ------------------------------');
-    print(mapResponse);
+
     token = mapResponse['access'];
-    print(token);
   }
 
   Future<Map<String, dynamic>> authenticationOTP(
