@@ -9,6 +9,8 @@ import 'package:sizer/sizer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
+import '../../common/common_app_bar.dart';
+
 class OtpScreen extends StatefulWidget {
   final String from;
   final String phone;
@@ -102,15 +104,19 @@ class _RegistationScreen extends State<OtpScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: '',
       ),
+      // appBar: AppBar(
+      //   leading: IconButton(
+      //     icon: Icon(Icons.arrow_back, color: Colors.black),
+      //     onPressed: () => Navigator.of(context).pop(),
+      //   ),
+      //   centerTitle: true,
+      //   backgroundColor: Colors.white,
+      //   elevation: 0,
+      // ),
       body: SingleChildScrollView(
         child: Container(
             decoration: BoxDecoration(

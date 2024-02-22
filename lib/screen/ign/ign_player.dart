@@ -1,6 +1,9 @@
 import 'package:dhanshirisapp/res/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import 'package:video_player/video_player.dart';
+
+import '../../common/common_app_bar.dart';
 
 class IgnPlayer extends StatefulWidget {
   final String videoUrl;
@@ -36,9 +39,13 @@ class _IgnPlayerState extends State<IgnPlayer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColorFactory.appPrimaryColor,
-        title: const Text('IGN'),
+      // appBar: AppBar(
+      //   backgroundColor: AppColorFactory.appPrimaryColor,
+      //   title: const Text('IGN'),
+      // ),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: 'IGN',
       ),
       // Use a FutureBuilder to display a loading spinner while waiting for the
       // VideoPlayerController to finish initializing.

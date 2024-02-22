@@ -9,6 +9,7 @@ import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../common/common_app_bar.dart';
 import '../../provider/theme_provider.dart';
 import '../../res/colors.dart';
 
@@ -36,12 +37,16 @@ class _BookRequestingScreenState extends State<BookRequestingScreen> {
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: AppColorFactory.appPrimaryColor,
-      appBar: AppBar(
-        backgroundColor: AppColorFactory.appPrimaryColor,
-        elevation: 0,
-        title: Text(
-          LocaleKeys.book_request_list.tr(),
-        ),
+      // appBar: AppBar(
+      //   backgroundColor: AppColorFactory.appPrimaryColor,
+      //   elevation: 0,
+      //   title: Text(
+      //     LocaleKeys.book_request_list.tr(),
+      //   ),
+      // ),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: LocaleKeys.book_request_list.tr(),
       ),
       body: SingleChildScrollView(
         child: Column(

@@ -14,6 +14,8 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../common/common_app_bar.dart';
+
 class UserProfileEdit extends StatefulWidget {
   final profiledata;
   final int checkdata;
@@ -91,12 +93,16 @@ class _UserProfileEditState extends State<UserProfileEdit> {
         Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: AppColorFactory.appPrimaryColor,
-      appBar: AppBar(
-          backgroundColor: AppColorFactory.appPrimaryColor,
-          elevation: 0,
-          title: Text(
-            LocaleKeys.profile_view.tr(),
-          )),
+      // appBar: AppBar(
+      //     backgroundColor: AppColorFactory.appPrimaryColor,
+      //     elevation: 0,
+      //     title: Text(
+      //       LocaleKeys.profile_view.tr(),
+      //     )),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: LocaleKeys.profile_view.tr(),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[

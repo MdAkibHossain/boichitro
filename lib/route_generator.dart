@@ -1,6 +1,7 @@
 import 'package:dhanshirisapp/screen/audio/audio_book_details.dart';
 import 'package:dhanshirisapp/screen/auth/login_screen.dart';
 import 'package:dhanshirisapp/screen/setting/setting.dart';
+import 'package:sizer/sizer.dart';
 
 import '/screen/History/history_page.dart';
 import '/screen/book_request/book_requested_screen.dart';
@@ -8,6 +9,8 @@ import '/screen/user/user_profile.dart';
 import '/screen/wishlist/my_wishlist.dart';
 import '/screen/about%20page/aboutpage.dart';
 import 'package:flutter/material.dart';
+
+import 'common/common_app_bar.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -47,10 +50,14 @@ class RouteGenerator {
     return MaterialPageRoute(
       builder: (context) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text("ERROR"),
-            centerTitle: true,
+          appBar: CommonAppBar(
+            height: 6.5.h,
+            title: 'ERROR',
           ),
+          // appBar: AppBar(
+          //   title: Text("ERROR"),
+          //   centerTitle: true,
+          // ),
           body: Center(
             child: Text("Page not found!"),
           ),

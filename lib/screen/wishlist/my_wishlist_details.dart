@@ -27,6 +27,8 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../common/common_app_bar.dart';
+
 class WishlistBookDetails extends StatefulWidget {
   final recentlist;
   final bytesImage;
@@ -57,9 +59,13 @@ class _BookDetailsState extends State<WishlistBookDetails> {
     AuthProvider authProvider =
         Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xffc60e13),
-        title: Text('Book Details'),
+      // appBar: AppBar(
+      //   backgroundColor: Color(0xffc60e13),
+      //   title: Text('Book Details'),
+      // ),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: LocaleKeys.book_details.tr(),
       ),
       body:
           //  Container(

@@ -14,6 +14,7 @@ import 'package:http/http.dart' as API;
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../common/common_app_bar.dart';
 import '../../provider/auth.dart';
 import '../../provider/theme_provider.dart';
 
@@ -61,12 +62,16 @@ class _BookRequestState extends State<BookRequest> {
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: AppColorFactory.appPrimaryColor,
-      appBar: AppBar(
-          backgroundColor: AppColorFactory.appPrimaryColor,
-          elevation: 0,
-          title: Text(
-            LocaleKeys.book_request.tr(),
-          )),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: LocaleKeys.book_request.tr(),
+      ),
+      // appBar: AppBar(
+      //     backgroundColor: AppColorFactory.appPrimaryColor,
+      //     elevation: 0,
+      //     title: Text(
+      //       LocaleKeys.book_request.tr(),
+      //     )),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[

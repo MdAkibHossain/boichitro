@@ -24,6 +24,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../common/common_app_bar.dart';
 import '../../res/colors.dart';
 
 class BookDetails extends StatefulWidget {
@@ -58,10 +59,14 @@ class _BookDetailsState extends State<BookDetails> {
         Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: AppColorFactory.appPrimaryColor,
-      appBar: AppBar(
-        backgroundColor: AppColorFactory.appPrimaryColor,
-        elevation: 0,
-        title: Text(LocaleKeys.book_details.tr()),
+      // appBar: AppBar(
+      //   backgroundColor: AppColorFactory.appPrimaryColor,
+      //   elevation: 0,
+      //   title: Text(LocaleKeys.book_details.tr()),
+      // ),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: LocaleKeys.book_details.tr(),
       ),
       body: Container(
         child: OrientationBuilder(builder: (context, orientation) {
@@ -263,7 +268,6 @@ class _BookDetailsState extends State<BookDetails> {
                                                             )));
                                               } else {
                                                 // ReadPdf(magazinePdf: widget.recentlist,);
-
                                               }
                                             } else {
                                               Navigator.push(

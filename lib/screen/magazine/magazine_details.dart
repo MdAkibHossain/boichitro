@@ -24,7 +24,9 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class MagazineDetails extends StatefulWidget { 
+import '../../common/common_app_bar.dart';
+
+class MagazineDetails extends StatefulWidget {
   final recentlist;
   final bytesImage;
   MagazineDetails(this.recentlist, this.bytesImage);
@@ -52,10 +54,14 @@ class _MagazineDetailsState extends State<MagazineDetails> {
         Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: AppColorFactory.appPrimaryColor,
-      appBar: AppBar(
-        backgroundColor: AppColorFactory.appPrimaryColor,
-        elevation: 0,
-        title: Text(LocaleKeys.magazine_details.tr()),
+      // appBar: AppBar(
+      //   backgroundColor: AppColorFactory.appPrimaryColor,
+      //   elevation: 0,
+      //   title: Text(LocaleKeys.magazine_details.tr()),
+      // ),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: LocaleKeys.magazine_details.tr(),
       ),
       body: Container(
         child: OrientationBuilder(builder: (context, orientation) {

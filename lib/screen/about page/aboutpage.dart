@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../common/common_app_bar.dart';
 import '../../provider/theme_provider.dart';
 import '../../res/colors.dart';
 import '../../translations/locale_keys.g.dart';
@@ -14,14 +15,18 @@ class AboutPage extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       backgroundColor: AppColorFactory.appPrimaryColor,
-      appBar: AppBar(
-        backgroundColor: AppColorFactory.appPrimaryColor,
-        elevation: 0,
-        title: Text(
-          LocaleKeys.about.tr(),
-          // style: TextStyle(fontSize: 24),
-        ),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: LocaleKeys.about.tr(),
       ),
+      // appBar: AppBar(
+      //   backgroundColor: AppColorFactory.appPrimaryColor,
+      //   elevation: 0,
+      //   title: Text(
+      //     LocaleKeys.about.tr(),
+      //     // style: TextStyle(fontSize: 24),
+      //   ),
+      // ),
       body: SingleChildScrollView(
         child: ClipRRect(
           borderRadius: BorderRadius.only(

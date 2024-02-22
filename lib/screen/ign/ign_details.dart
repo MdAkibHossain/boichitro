@@ -25,6 +25,8 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../common/common_app_bar.dart';
+
 class IGNDetails extends StatefulWidget {
   final recentlist;
   final bytesImage;
@@ -53,10 +55,14 @@ class _IGNDetailsState extends State<IGNDetails> {
         Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: AppColorFactory.appPrimaryColor,
-      appBar: AppBar(
-        backgroundColor: AppColorFactory.appPrimaryColor,
-        elevation: 0,
-        title: Text(LocaleKeys.ign_details.tr()),
+      // appBar: AppBar(
+      //   backgroundColor: AppColorFactory.appPrimaryColor,
+      //   elevation: 0,
+      //   title: Text(LocaleKeys.ign_details.tr()),
+      // ),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: LocaleKeys.ign_details.tr(),
       ),
       body: Container(
         child: OrientationBuilder(builder: (context, orientation) {

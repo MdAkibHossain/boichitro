@@ -9,6 +9,7 @@ import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../common/common_app_bar.dart';
 import '../../provider/theme_provider.dart';
 import '../../res/colors.dart';
 
@@ -64,13 +65,17 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
 
     return Scaffold(
       backgroundColor: AppColorFactory.appPrimaryColor,
-      appBar: AppBar(
-        backgroundColor: AppColorFactory.appPrimaryColor,
-        elevation: 0,
-        title: Text(
-          LocaleKeys.mywishlist.tr(),
-        ),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: LocaleKeys.mywishlist.tr(),
       ),
+      // appBar: AppBar(
+      //   backgroundColor: AppColorFactory.appPrimaryColor,
+      //   elevation: 0,
+      //   title: Text(
+      //     LocaleKeys.mywishlist.tr(),
+      //   ),
+      // ),
       //  AppBar(
       //   backgroundColor: Color(0xffb8242a),
       //   title: Align(

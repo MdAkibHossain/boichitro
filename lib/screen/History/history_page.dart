@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../common/common_app_bar.dart';
 import '../../provider/auth.dart';
 import '../../provider/theme_provider.dart';
 import '../../res/colors.dart';
@@ -51,13 +52,17 @@ class _NotesPageState extends State<HistoryPage> {
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: AppColorFactory.appPrimaryColor,
-      appBar: AppBar(
-        backgroundColor: AppColorFactory.appPrimaryColor,
-        elevation: 0,
-        title: Text(
-          LocaleKeys.history.tr(),
-          // style: TextStyle(fontSize: 24),
-        ),
+      // appBar: AppBar(
+      //   backgroundColor: AppColorFactory.appPrimaryColor,
+      //   elevation: 0,
+      //   title: Text(
+      //     LocaleKeys.history.tr(),
+      //     // style: TextStyle(fontSize: 24),
+      //   ),
+      // ),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: LocaleKeys.history.tr(),
       ),
       body: SingleChildScrollView(
         child: Container(

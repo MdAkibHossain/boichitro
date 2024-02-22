@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:sizer/sizer.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../common/common_app_bar.dart';
 import '../../res/colors.dart';
 
 class WebViewVideo extends StatefulWidget {
@@ -19,16 +20,20 @@ class _WebViewVideoState extends State<WebViewVideo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        backgroundColor: AppColorFactory.appPrimaryColor,
-        elevation: 0,
-        title: Text('Watch IGN'),
+      // appBar: AppBar(
+      //   leading: IconButton(
+      //     icon: Icon(Icons.arrow_back),
+      //     onPressed: () {
+      //       Navigator.pop(context);
+      //     },
+      //   ),
+      //   backgroundColor: AppColorFactory.appPrimaryColor,
+      //   elevation: 0,
+      //   title: Text('Watch IGN'),
+      // ),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: 'Watch IGN',
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 3.0.h),

@@ -12,6 +12,8 @@ import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../common/common_app_bar.dart';
+
 class Setting extends StatefulWidget {
   static const routeName = '/setting';
 
@@ -37,12 +39,16 @@ class _SettingState extends State<Setting> {
 
     return Scaffold(
       backgroundColor: AppColorFactory.appPrimaryColor,
-      appBar: AppBar(
-          backgroundColor: AppColorFactory.appPrimaryColor,
-          elevation: 0,
-          title: Text(
-            LocaleKeys.settings.tr(),
-          )),
+      // appBar: AppBar(
+      //     backgroundColor: AppColorFactory.appPrimaryColor,
+      //     elevation: 0,
+      //     title: Text(
+      //       LocaleKeys.settings.tr(),
+      //     )),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: LocaleKeys.settings.tr(),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

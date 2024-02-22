@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
+import 'package:sizer/sizer.dart';
 
+import '../../common/common_app_bar.dart';
 import '../../provider/book_read.dart';
 import '../../provider/order.dart';
 
@@ -26,12 +28,16 @@ class _ReadPdfState extends State<ReadPdf> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColorFactory.appPrimaryColor,
-        elevation: 0,
-        title: Text(
-            // widget.magazinePdf
-            LocaleKeys.pdf_book.tr()),
+      // appBar: AppBar(
+      //   backgroundColor: AppColorFactory.appPrimaryColor,
+      //   elevation: 0,
+      //   title: Text(
+      //       // widget.magazinePdf
+      //       LocaleKeys.pdf_book.tr()),
+      // ),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: LocaleKeys.pdf_book.tr(),
       ),
       body: const PDF().fromUrl(
         'https://boichitro.com.bd/' + widget.book_details.toString(),

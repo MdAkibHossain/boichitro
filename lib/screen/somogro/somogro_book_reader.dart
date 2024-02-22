@@ -16,6 +16,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import '../../common/common_app_bar.dart';
 import '../../screen/about page/aboutpage.dart';
 import '../../screen/setting/setting.dart';
 
@@ -48,13 +49,17 @@ class _SomogroReadBookState extends State<SomogroReadBook> {
 
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: Color(0xffc60e13),
-        title: Text(
-          widget.bookdetails![booknumber].part_name.toString(),
-          style: TextStyle(fontSize: 14.sp),
-        ),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: '${widget.bookdetails![booknumber].part_name.toString()}',
       ),
+      // appBar: AppBar(
+      //   backgroundColor: Color(0xffc60e13),
+      //   title: Text(
+      //     widget.bookdetails![booknumber].part_name.toString(),
+      //     style: TextStyle(fontSize: 14.sp),
+      //   ),
+      // ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,

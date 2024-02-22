@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../common/common_app_bar.dart';
+
 class AboutApp extends StatelessWidget {
 //  const AboutApp({Key? key}) : super(key: key);
   Matrix4 matrix = Matrix4.identity();
@@ -11,10 +13,14 @@ class AboutApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xffc60e13),
-        title: const Text('About Boichitro'),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: 'About Boichitro',
       ),
+      // AppBar(
+      //   backgroundColor: Color(0xffc60e13),
+      //   title: const Text('About Boichitro'),
+      // ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

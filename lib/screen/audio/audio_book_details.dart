@@ -28,6 +28,8 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../common/common_app_bar.dart';
+
 class AudioBookDetails extends StatefulWidget {
   static const routeName = '/audioBook-details';
   final recentlist;
@@ -76,7 +78,11 @@ class _BookDetailsState extends State<AudioBookDetails> {
     //     Base64Decoder().convert(widget.recentlist.cover_image.toString());
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     return Scaffold(
-      appBar: AppBar(backgroundColor: Color(0xffc60e13)),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: '',
+      ),
+      // appBar: AppBar(backgroundColor: Color(0xffc60e13)),
       body: SingleChildScrollView(
         child: Container(
           height: 90.0.h,

@@ -20,6 +20,7 @@ import 'package:sizer/sizer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../common/common_app_bar.dart';
 import '../../model/audio_listener_split.dart';
 import '../../screen/about page/aboutpage.dart';
 import '../../screen/setting/setting.dart';
@@ -48,13 +49,23 @@ class _AudioListenerState extends State<AudioListener> {
 
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: Color(0xffc60e13),
-        title: Text(
-          'Audio Player',
-          style: TextStyle(fontSize: 12.sp),
-        ),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: 'Audio Player',
       ),
+      // AppBar(
+      //   leading: IconButton(
+      //       onPressed: () {
+      //         Navigator.pop(context);
+      //       },
+      //       icon: Icon(Icons.arrow_back_ios)),
+      //   centerTitle: true,
+      //   backgroundColor: Color(0xffc60e13),
+      //   title: Text(
+      //     'Audio Player',
+      //     style: TextStyle(fontSize: 12.sp),
+      //   ),
+      // ),
       // drawer: Drawer(
       //   child: ListView(
       //     padding: EdgeInsets.zero,

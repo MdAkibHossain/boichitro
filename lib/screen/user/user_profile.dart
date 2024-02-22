@@ -13,6 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../common/common_app_bar.dart';
+
 class ProfileInfo extends StatefulWidget {
   static const routeName = '/profile-info';
   @override
@@ -30,12 +32,16 @@ class _ProfilePageState extends State<ProfileInfo> {
         Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: AppColorFactory.appPrimaryColor,
-      appBar: AppBar(
-          backgroundColor: AppColorFactory.appPrimaryColor,
-          elevation: 0,
-          title: Text(
-            LocaleKeys.profile.tr(),
-          )),
+      // appBar: AppBar(
+      //     backgroundColor: AppColorFactory.appPrimaryColor,
+      //     elevation: 0,
+      //     title: Text(
+      //       LocaleKeys.profile.tr(),
+      //     )),
+      appBar: CommonAppBar(
+        height: 6.5.h,
+        title: LocaleKeys.profile.tr(),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
