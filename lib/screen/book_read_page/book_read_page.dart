@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dhanshirisapp/common/common_app_bar.dart';
 import 'package:dhanshirisapp/db/history_database.dart';
 import 'package:dhanshirisapp/db/history_data.dart';
 import 'package:dhanshirisapp/provider/book_read.dart';
@@ -174,20 +175,29 @@ class _BookReadScreenState extends State<BookReadPage>
     return SingleChildScrollView(
       child: Column(children: [
         ischeck == false
-            ? Container(
-                padding: EdgeInsets.only(top: 5.0.h),
-                height: 10.0.h,
-                color: Color(0xffb8242a),
-                child: Center(
-                  child: Text(
-                    widget.book_name!,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+            ? CommonAppBar(
+                height: 6.5.h,
+                title: widget.book_name!,
+                isHomeActive: true,
               )
+            // Container(
+            //     padding: EdgeInsets.only(top: 5.0.h),
+            //     height: 10.0.h,
+            //     color: Color(0xffb8242a),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.center,
+            //       children: [
+            //         Text(
+            //           widget.book_name!,
+            //           style: TextStyle(
+            //             color: Colors.white,
+            //             fontWeight: FontWeight.bold,
+            //           ),
+            //         ),
+            //         GestureDetector(onTap: () {}, child: Icon(Icons.home))
+            //       ],
+            //     ),
+            //   )
             : Container(),
         InkWell(
           onDoubleTap: () {

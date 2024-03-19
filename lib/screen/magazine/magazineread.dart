@@ -25,6 +25,7 @@ class _ReadMagazineState extends State<ReadMagazine> {
       appBar: CommonAppBar(
         height: 6.5.h,
         title: LocaleKeys.magazine.tr(),
+        isHomeActive: true,
       ),
       // appBar: AppBar(
       //   backgroundColor: AppColorFactory.appPrimaryColor,

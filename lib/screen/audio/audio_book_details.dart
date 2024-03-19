@@ -110,36 +110,47 @@ class _BookDetailsState extends State<AudioBookDetails> {
                   children: [
                     Column(
                       children: [
-                        CachedNetworkImage(
-                          imageUrl:
-                              "https://res.cloudinary.com/boichitro/${widget.recentlist.cover_image.toString()}",
-                          imageBuilder: (context, imageProvider) => Container(
-                            height: 22.0.h,
-                            margin: EdgeInsets.only(
-                              top: 2.5.h,
-                              left: 5.0.w,
-                              right: 3.0.w,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AudioApiCall(
+                                        id: widget.recentlist.id,
+                                        book_name:
+                                            widget.recentlist.bookname)));
+                          },
+                          child: CachedNetworkImage(
+                            imageUrl:
+                                "https://res.cloudinary.com/boichitro/${widget.recentlist.cover_image.toString()}",
+                            imageBuilder: (context, imageProvider) => Container(
+                              height: 22.0.h,
+                              margin: EdgeInsets.only(
+                                top: 2.5.h,
+                                left: 5.0.w,
+                                right: 3.0.w,
+                              ),
+                              decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(15),
+                                  image: DecorationImage(
+                                      image: imageProvider,
+                                      //  image: MemoryImage(_bytesImage),
+                                      fit: BoxFit.fill),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        blurRadius: 2,
+                                        spreadRadius: 3,
+                                        color: Colors.black12,
+                                        offset: Offset.zero)
+                                  ]),
+                              width: 30.0.w,
                             ),
-                            decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(15),
-                                image: DecorationImage(
-                                    image: imageProvider,
-                                    //  image: MemoryImage(_bytesImage),
-                                    fit: BoxFit.fill),
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 2,
-                                      spreadRadius: 3,
-                                      color: Colors.black12,
-                                      offset: Offset.zero)
-                                ]),
-                            width: 30.0.w,
+                            placeholder: (context, url) =>
+                                Center(child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
                           ),
-                          placeholder: (context, url) =>
-                              Center(child: CircularProgressIndicator()),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
                         ),
                       ],
                     ),

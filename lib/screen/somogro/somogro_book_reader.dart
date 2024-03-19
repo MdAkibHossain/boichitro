@@ -52,6 +52,7 @@ class _SomogroReadBookState extends State<SomogroReadBook> {
       appBar: CommonAppBar(
         height: 6.5.h,
         title: '${widget.bookdetails![booknumber].part_name.toString()}',
+        isHomeActive: true,
       ),
       // appBar: AppBar(
       //   backgroundColor: Color(0xffc60e13),

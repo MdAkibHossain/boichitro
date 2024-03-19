@@ -1,3 +1,4 @@
+import 'package:dhanshirisapp/common/common_app_bar.dart';
 import 'package:dhanshirisapp/constants/app_constants.dart';
 import 'package:dhanshirisapp/db/history_database.dart';
 import 'package:dhanshirisapp/db/history_data.dart';
@@ -64,6 +65,7 @@ class _BookApiCallState extends State<BookApiCall> {
   Widget build(BuildContext context) {
     Orther order = Provider.of<Orther>(context);
     return Scaffold(
+      // appBar: CommonAppBar(height: 6.5.h, title: 'title'),
       body: Container(
           child: Consumer<BookReadtModel>(
               child: Center(child: CircularProgressIndicator()),

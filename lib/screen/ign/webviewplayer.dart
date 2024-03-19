@@ -34,6 +34,7 @@ class _WebViewVideoState extends State<WebViewVideo> {
       appBar: CommonAppBar(
         height: 6.5.h,
         title: 'Watch IGN',
+        isHomeActive: true,
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 3.0.h),
