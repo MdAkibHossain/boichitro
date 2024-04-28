@@ -9,6 +9,7 @@ import 'package:dhanshirisapp/model/slider_model.dart';
 import 'package:dhanshirisapp/model/sliderimage.dart';
 import 'package:dhanshirisapp/model/somogro.dart';
 import 'package:dhanshirisapp/utill/app_constants.dart';
+import 'package:dhanshirisapp/utill/debug_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 //import 'dart:developer' as developer;
@@ -58,12 +59,15 @@ class CategoryProvider with ChangeNotifier {
         'Authorization': 'Token $token',
       });
       List<Category> _categoryTempList = [];
+      logView(response.body.toString());
       List<String> _categoryTempNameList = [];
       Map<String, dynamic> mapResponse =
           jsonDecode((utf8.decode(response.bodyBytes)));
       mapResponse['results'].forEach((dynamic datalist) {
         final Category _product =
             Category(id: datalist['id'], name: datalist['category_name']);
+        logView(
+            'id:=== ${datalist['id']}, name: ===${datalist['category_name']}');
         _categoryTempList.add(_product);
         _categoryTempNameList.add(_product.name.toString());
       });
@@ -74,6 +78,7 @@ class CategoryProvider with ChangeNotifier {
       message = 'success';
       isLoadingCategory = false;
       notifyListeners();
+      logView('Category :::::::::::::::::::${_categoryNames.toString()}');
     } catch (error) {
       message = 'failed';
       isLoadingCategory = false;

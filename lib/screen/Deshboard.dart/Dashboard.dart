@@ -21,6 +21,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../provider/favourit_list.dart';
 import '../../utill/debug_utils.dart';
 import 'widget/audio_book/audio_book_widget.dart';
+import 'widget/book_categories/bangabondhu_books_widget.dart';
 import 'widget/book_categories/popular_books_widget.dart';
 import 'widget/book_categories/recent_books_widget.dart';
 import 'widget/book_categories_widget.dart';
@@ -332,6 +333,7 @@ class _DashboardState extends State<Dashboard> {
                             isPortrait: _isPortrait,
                           ),
                           RecentBookWidget(),
+                          BangabondhuBookWidget(),
                           PopularBookWidget(),
                           SomogroBook(),
                           IGNWidget(),
